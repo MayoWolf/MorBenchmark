@@ -67,6 +67,12 @@ npm run dev
 
 Then open the local URL printed by Vite.
 
+Before opening a benchmark-pack PR, run:
+
+```bash
+npm run check:packs
+```
+
 ## Build
 
 ```bash
@@ -128,6 +134,19 @@ Optional task fields include:
 
 The app validates imported packs before loading them and rejects duplicate task ids, missing pack fields, malformed tasks, missing multiple-choice choices, and missing rubric arrays for rubric/manual tasks.
 
+## Pack Quality Checks
+
+FRCBench has two levels of pack checks:
+
+- Errors block CI and should be fixed before review. Examples: missing required fields, duplicate task ids, invalid categories, invalid scoring types, malformed multiple-choice tasks, empty prompts, and structured JSON tasks without a rubric or expected JSON shape.
+- Warnings do not fail CI, but they are review prompts. Examples: very short prompts, missing source notes, unverified rule tasks, source-verified tasks without sources, missing public explanations, and cited sources without URLs.
+
+Run the checker locally:
+
+```bash
+npm run check:packs
+```
+
 ## Contributing Benchmark Packs
 
 1. Copy `benchmark-packs/template-pack.json`.
@@ -137,8 +156,11 @@ The app validates imported packs before loading them and rejects duplicate task 
 5. Do not cite community discussion as an official rule source.
 6. Avoid unsupported claims, fake rule numbers, and overgeneralizing one event's meta.
 7. Import the pack in the app and fix validation errors before opening a PR.
+8. Run `npm run check:packs` and include any intentional warnings in the PR description.
 
-See `benchmark-packs/README.md` for detailed writing guidance.
+See `benchmark-packs/README.md` for detailed writing guidance, and `benchmark-packs/source-verification-guide.md` for source verification workflow.
+
+To move a task to `source_verified`, add at least one acceptable source and make sure the prompt, expected answer, and rubric are supported by that source. Official rule questions should cite FIRST manuals, team updates, or Q&A. Event data can cite The Blue Alliance or Statbotics. Community meta can cite Chief Delphi, team strategy posts, public presentations, or scouting resources, but those should be described as community evidence rather than official rules.
 
 ## Scoring in v1
 
@@ -154,11 +176,13 @@ The app code is MIT licensed. Benchmark datasets may eventually need additional 
 
 ## Roadmap
 
+- v0.2: source-verified public benchmark pack
+- v0.3: signed benchmark results
+- v0.4: optional leaderboard
 - Hidden/private benchmark mode
 - Community submitted task review flow
 - Judge-model rubric grading with calibration sets
 - Better local model runner support
-- Leaderboard with signed result files
 - Pack versioning and compatibility metadata
 - Official source citations for rule-specific tasks
 - Per-season packs

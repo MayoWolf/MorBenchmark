@@ -13,6 +13,7 @@ import type {
 } from '../types/benchmark';
 import { BenchmarkPackManager } from './BenchmarkPackManager';
 import { ModelConfig } from './ModelConfig';
+import { PackQualityReport } from './PackQualityReport';
 import { TaskBrowser } from './TaskBrowser';
 
 interface BenchmarkRunnerProps {
@@ -180,6 +181,8 @@ export function BenchmarkRunner({
       />
 
       <BenchmarkPackManager pack={benchmarkPack} onPackChange={onBenchmarkPackChange} />
+
+      <PackQualityReport pack={benchmarkPack} />
 
       <TaskBrowser
         tasks={benchmarkPack.tasks}

@@ -4,6 +4,12 @@ FRCBench benchmark packs are plain JSON files. A good pack should be useful to F
 
 Start from `template-pack.json`, then import your file in the app to check validation errors before opening a PR.
 
+Before opening a PR, also run:
+
+```bash
+npm run check:packs
+```
+
 ## Pack Shape
 
 Each pack needs:
@@ -44,12 +50,16 @@ Rubric and manual tasks need a `rubric` array. Multiple-choice tasks need `choic
 - `multiple_choice`: exact letter match
 - `short_answer`: keyword/rubric matching
 - `json_structured`: keyword/rubric matching plus valid JSON parsing
+- `structured_json`: alias for `json_structured`
+- `keyword`: alias for keyword/rubric matching
 - `rubric`: manual review in v1
 - `manual`: manual review in v1
 
 Rubric items should be specific enough to review consistently. Add `keywords` only when keyword scoring makes sense.
 
 ## Sources and Verification
+
+For the full verification workflow, see `source-verification-guide.md`.
 
 Use the optional `sources` array when a task depends on outside information:
 
@@ -73,6 +83,8 @@ Good sources include:
 
 Do not cite community discussion as if it were an official rule. Chief Delphi, team blogs, and strategy videos are useful for meta, but they are not replacements for manuals or updates.
 
+Acceptable sources should be public, stable enough for reviewers to inspect, and directly related to the claim in the task. For source entries, include `title`, `url`, `publisher`, `year`, and a short `note` explaining what the source supports.
+
 ## Verification Status
 
 Use `verificationStatus` honestly:
@@ -80,6 +92,16 @@ Use `verificationStatus` honestly:
 - `unverified`: drafted or generic; needs review before canonical use
 - `community_reviewed`: checked by knowledgeable FRC contributors
 - `source_verified`: supported by cited official or high-quality public sources
+
+Move a task from `unverified` to `source_verified` only when the prompt, expected answer, and rubric are all supported by the cited source material. For rule-specific tasks, use official FIRST manuals, team updates, or Q&A. For event data, use The Blue Alliance or Statbotics. For meta claims, cite community resources and keep the wording honest about regional or event-level context.
+
+## Errors vs Warnings
+
+`npm run check:packs` reports errors and warnings.
+
+Errors fail CI and must be fixed before merging. They include missing required fields, duplicate task ids, invalid categories, invalid difficulty, invalid scoring types, rubric tasks without rubrics, multiple-choice tasks without choices, malformed multiple-choice answers, empty prompts, empty expected answers, and structured JSON tasks without a rubric or expected JSON shape.
+
+Warnings do not fail CI, but they should be reviewed. They include short prompts, very short expected answers, missing tags, missing `sourceNote`, `source_verified` tasks without sources, unverified `game_rules` tasks, rubric items with non-positive points, missing `publicExplanation`, missing source URLs, and prompts over 4000 characters.
 
 ## Avoid Unsupported Claims
 
@@ -109,6 +131,7 @@ A strong expected answer should describe the reasoning pattern, not only one "co
 ## Review Checklist
 
 - The pack imports successfully in the app.
+- `npm run check:packs` has zero errors.
 - Task ids are unique.
 - Rule-specific claims have official citations.
 - Community meta is marked as community meta.

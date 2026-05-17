@@ -14,12 +14,44 @@
       "prompt": "A 2019-style alliance loses despite having two robots with strong scoring bursts. Match notes say traffic and unclear lane priority caused repeated dead time. What should the drive team review before the next match?",
       "expectedAnswer": "A good answer should review pathing, lane priority, role assignment, communication, queueing near scoring locations, defensive pressure, and fallback plans when a partner is blocked.",
       "rubric": [
-        { "point": "Mentions pathing, traffic, or lane priority", "points": 1, "keywords": ["path", "traffic", "lane", "congestion"] },
-        { "point": "Mentions role clarity or communication", "points": 1, "keywords": ["role", "communication", "handoff", "priority"] },
-        { "point": "Mentions defense, fallback plans, or blocked-partner contingencies", "points": 1, "keywords": ["defense", "fallback", "blocked", "contingency"] }
+        {
+          "point": "Mentions pathing, traffic, or lane priority",
+          "points": 1,
+          "keywords": [
+            "path",
+            "traffic",
+            "lane",
+            "congestion"
+          ]
+        },
+        {
+          "point": "Mentions role clarity or communication",
+          "points": 1,
+          "keywords": [
+            "role",
+            "communication",
+            "handoff",
+            "priority"
+          ]
+        },
+        {
+          "point": "Mentions defense, fallback plans, or blocked-partner contingencies",
+          "points": 1,
+          "keywords": [
+            "defense",
+            "fallback",
+            "blocked",
+            "contingency"
+          ]
+        }
       ],
-      "tags": ["2019", "match-analysis", "drive-team", "traffic"],
-      "sourceNote": "Generic 2019-style match analysis prompt. Verify field terminology and protected areas against the official manual before canonical use.",
+      "tags": [
+        "2019",
+        "match-analysis",
+        "drive-team",
+        "traffic"
+      ],
+      "sourceNote": "For 2019 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For match-analysis tasks, verify field and scoring terminology in the official manual. Use The Blue Alliance match videos/data or team review resources when making concrete event claims.",
       "publicExplanation": "Tests whether the model can diagnose match flow instead of only saying to score faster.",
       "verificationStatus": "unverified"
     },
@@ -33,12 +65,44 @@
       "prompt": "In a 2019 playoff picklist discussion, your alliance already has two high-output scorers. The next choice is between a third scorer with reliability issues and a lower-scoring robot known for disciplined defense. Explain how you would decide.",
       "expectedAnswer": "Compare marginal scoring need, reliability, defensive value, foul risk, matchup needs, partner compatibility, and repairability. The answer should not pick only by average points.",
       "rubric": [
-        { "point": "Compares marginal role fit rather than raw average score only", "points": 1, "keywords": ["marginal", "fit", "role", "need"] },
-        { "point": "Considers reliability, repairability, or failure risk", "points": 1, "keywords": ["reliable", "reliability", "repair", "breakdown"] },
-        { "point": "Considers defense, foul risk, or opponent matchup", "points": 1, "keywords": ["defense", "foul", "matchup", "opponent"] }
+        {
+          "point": "Compares marginal role fit rather than raw average score only",
+          "points": 1,
+          "keywords": [
+            "marginal",
+            "fit",
+            "role",
+            "need"
+          ]
+        },
+        {
+          "point": "Considers reliability, repairability, or failure risk",
+          "points": 1,
+          "keywords": [
+            "reliable",
+            "reliability",
+            "repair",
+            "breakdown"
+          ]
+        },
+        {
+          "point": "Considers defense, foul risk, or opponent matchup",
+          "points": 1,
+          "keywords": [
+            "defense",
+            "foul",
+            "matchup",
+            "opponent"
+          ]
+        }
       ],
-      "tags": ["2019", "alliance-selection", "defense", "reliability"],
-      "sourceNote": "Community strategy prompt. Needs reviewer input to align with 2019 event metas.",
+      "tags": [
+        "2019",
+        "alliance-selection",
+        "defense",
+        "reliability"
+      ],
+      "sourceNote": "For 2019 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For alliance-selection claims, verify game constraints in official materials and support meta claims with event/picklist evidence from The Blue Alliance, Statbotics, Chief Delphi recaps, or public team strategy resources.",
       "publicExplanation": "Tests playoff role-composition reasoning.",
       "verificationStatus": "unverified"
     },
@@ -52,12 +116,43 @@
       "prompt": "A scout report says Team A has the same scoring average as Team B, but Team A has much lower variance and fewer fouls. Give one reason Team A may be more valuable in playoffs.",
       "expectedAnswer": "Lower variance and fewer fouls can make Team A more predictable in tight playoff matches, reducing downside risk even if the scoring average is similar.",
       "rubric": [
-        { "point": "Mentions consistency or lower variance", "points": 1, "keywords": ["consistent", "consistency", "variance", "predictable"] },
-        { "point": "Mentions foul or penalty risk", "points": 1, "keywords": ["foul", "penalty", "risk"] },
-        { "point": "Connects the issue to playoff or elimination reliability", "points": 1, "keywords": ["playoff", "elimination", "tight", "reliable"] }
+        {
+          "point": "Mentions consistency or lower variance",
+          "points": 1,
+          "keywords": [
+            "consistent",
+            "consistency",
+            "variance",
+            "predictable"
+          ]
+        },
+        {
+          "point": "Mentions foul or penalty risk",
+          "points": 1,
+          "keywords": [
+            "foul",
+            "penalty",
+            "risk"
+          ]
+        },
+        {
+          "point": "Connects the issue to playoff or elimination reliability",
+          "points": 1,
+          "keywords": [
+            "playoff",
+            "elimination",
+            "tight",
+            "reliable"
+          ]
+        }
       ],
-      "tags": ["2019", "scouting", "variance", "playoffs"],
-      "sourceNote": "Generic scouting interpretation item; no official rule claim.",
+      "tags": [
+        "2019",
+        "scouting",
+        "variance",
+        "playoffs"
+      ],
+      "sourceNote": "For 2019 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For scouting-interpretation tasks, verify game terms in official materials and support data claims with The Blue Alliance, Statbotics, team scouting resources, or clearly scoped community analysis.",
       "publicExplanation": "Tests whether the model understands variance and risk in picklist decisions.",
       "verificationStatus": "unverified"
     },
@@ -77,10 +172,20 @@
         "D. Assume all protected-zone contact has the same penalty across seasons"
       ],
       "rubric": [
-        { "point": "Selects C", "points": 1, "keywords": ["C"] }
+        {
+          "point": "Selects C",
+          "points": 1,
+          "keywords": [
+            "C"
+          ]
+        }
       ],
-      "tags": ["2019", "rules", "source-awareness"],
-      "sourceNote": "Exact official rule interpretation requires verification from the 2019 Game Manual and official updates.",
+      "tags": [
+        "2019",
+        "rules",
+        "source-awareness"
+      ],
+      "sourceNote": "Verify against the 2019 DESTINATION: DEEP SPACE Game Manual, official team updates, and Q&A. Check exact protected-zone/contact terminology, penalties, and any cited rule numbers before marking source_verified.",
       "publicExplanation": "Tests source discipline for official rule questions.",
       "verificationStatus": "unverified",
       "sources": [
@@ -103,12 +208,42 @@
       "prompt": "A team can build a narrow mechanism optimized for one common scoring role or a broader mechanism that is slower but more flexible. What tradeoffs should they analyze?",
       "expectedAnswer": "They should compare strategic value, cycle time, reliability, driver practice, integration risk, partner compatibility, event variability, and maintenance complexity.",
       "rubric": [
-        { "point": "Mentions strategic value or role specialization", "points": 1, "keywords": ["strategy", "role", "specialized", "flexible"] },
-        { "point": "Mentions cycle time or reliability", "points": 1, "keywords": ["cycle", "reliable", "reliability"] },
-        { "point": "Mentions partner compatibility, practice, integration, or maintenance", "points": 1, "keywords": ["partner", "practice", "integration", "maintenance"] }
+        {
+          "point": "Mentions strategic value or role specialization",
+          "points": 1,
+          "keywords": [
+            "strategy",
+            "role",
+            "specialized",
+            "flexible"
+          ]
+        },
+        {
+          "point": "Mentions cycle time or reliability",
+          "points": 1,
+          "keywords": [
+            "cycle",
+            "reliable",
+            "reliability"
+          ]
+        },
+        {
+          "point": "Mentions partner compatibility, practice, integration, or maintenance",
+          "points": 1,
+          "keywords": [
+            "partner",
+            "practice",
+            "integration",
+            "maintenance"
+          ]
+        }
       ],
-      "tags": ["2019", "design", "tradeoffs"],
-      "sourceNote": "Generic design tradeoff item. Verify season-specific object handling if making the prompt more concrete.",
+      "tags": [
+        "2019",
+        "design",
+        "tradeoffs"
+      ],
+      "sourceNote": "For 2019 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For design-tradeoff tasks, verify game-objective terminology in the official manual. Support meta/design claims with team technical resources, public build blogs, event data, or community discussion when available.",
       "publicExplanation": "Tests engineering strategy under build-season constraints.",
       "verificationStatus": "unverified"
     },
@@ -122,12 +257,44 @@
       "prompt": "In a 2020-style qualification match, an alliance can chase a ranking objective or play a safer plan that likely wins the match. What factors should the strategist weigh?",
       "expectedAnswer": "A good answer weighs win probability, ranking-objective probability, current ranking needs, alliance capabilities, opponent strength, execution risk, and time remaining.",
       "rubric": [
-        { "point": "Compares win probability with ranking-objective probability", "points": 1, "keywords": ["win", "ranking", "probability", "chance"] },
-        { "point": "Considers alliance and opponent capabilities", "points": 1, "keywords": ["alliance", "opponent", "capability", "strength"] },
-        { "point": "Considers execution risk, time remaining, or event ranking context", "points": 1, "keywords": ["risk", "time", "rank", "context"] }
+        {
+          "point": "Compares win probability with ranking-objective probability",
+          "points": 1,
+          "keywords": [
+            "win",
+            "ranking",
+            "probability",
+            "chance"
+          ]
+        },
+        {
+          "point": "Considers alliance and opponent capabilities",
+          "points": 1,
+          "keywords": [
+            "alliance",
+            "opponent",
+            "capability",
+            "strength"
+          ]
+        },
+        {
+          "point": "Considers execution risk, time remaining, or event ranking context",
+          "points": 1,
+          "keywords": [
+            "risk",
+            "time",
+            "rank",
+            "context"
+          ]
+        }
       ],
-      "tags": ["2020", "ranking-points", "qualification", "risk"],
-      "sourceNote": "Generic ranking-point strategy prompt. Exact 2020 ranking-point objectives need verification from the official manual.",
+      "tags": [
+        "2020",
+        "ranking-points",
+        "qualification",
+        "risk"
+      ],
+      "sourceNote": "Verify against the 2020 INFINITE RECHARGE Game Manual, official team updates, and Q&A. Check exact rule language, ranking-point objectives, penalties, and any season-specific terminology before marking source_verified. For ranking-point tasks, check the exact season manual and official updates for ranking-point objectives and thresholds before marking source_verified.",
       "publicExplanation": "Tests qualification strategy tradeoffs.",
       "verificationStatus": "unverified"
     },
@@ -141,12 +308,43 @@
       "prompt": "A team with limited time can either improve scoring accuracy or add a complex endgame mechanism. What should they analyze before choosing?",
       "expectedAnswer": "They should estimate point impact, reliability, integration risk, practice time, schedule risk, repairability, and alliance value.",
       "rubric": [
-        { "point": "Mentions expected point or match impact", "points": 1, "keywords": ["point", "impact", "value"] },
-        { "point": "Mentions reliability or integration risk", "points": 1, "keywords": ["reliable", "reliability", "integration", "risk"] },
-        { "point": "Mentions practice, schedule, repairability, or alliance value", "points": 1, "keywords": ["practice", "schedule", "repair", "alliance"] }
+        {
+          "point": "Mentions expected point or match impact",
+          "points": 1,
+          "keywords": [
+            "point",
+            "impact",
+            "value"
+          ]
+        },
+        {
+          "point": "Mentions reliability or integration risk",
+          "points": 1,
+          "keywords": [
+            "reliable",
+            "reliability",
+            "integration",
+            "risk"
+          ]
+        },
+        {
+          "point": "Mentions practice, schedule, repairability, or alliance value",
+          "points": 1,
+          "keywords": [
+            "practice",
+            "schedule",
+            "repair",
+            "alliance"
+          ]
+        }
       ],
-      "tags": ["2020", "design", "endgame", "accuracy"],
-      "sourceNote": "Generic 2020-style design prompt; not an official scoring claim.",
+      "tags": [
+        "2020",
+        "design",
+        "endgame",
+        "accuracy"
+      ],
+      "sourceNote": "For 2020 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For design-tradeoff tasks, verify game-objective terminology in the official manual. Support meta/design claims with team technical resources, public build blogs, event data, or community discussion when available.",
       "publicExplanation": "Tests build-priority reasoning.",
       "verificationStatus": "unverified"
     },
@@ -160,12 +358,42 @@
       "prompt": "Return JSON with keys \"pickRisk\", \"strengths\", \"concerns\", and \"dataToVerify\" for a robot with strong teleop output, inconsistent autonomous, and occasional mechanical downtime.",
       "expectedAnswer": "{\"pickRisk\":\"medium\",\"strengths\":[\"teleop scoring\"],\"concerns\":[\"inconsistent autonomous\",\"mechanical downtime\"],\"dataToVerify\":[\"auto success rate\",\"downtime causes\",\"cycle consistency\",\"repair history\"]}",
       "rubric": [
-        { "point": "Uses requested keys", "points": 1, "keywords": ["pickRisk", "strengths", "concerns", "dataToVerify"] },
-        { "point": "Identifies teleop output as a strength", "points": 1, "keywords": ["teleop", "strength"] },
-        { "point": "Identifies autonomous inconsistency or downtime as concerns", "points": 1, "keywords": ["auto", "autonomous", "downtime", "mechanical"] }
+        {
+          "point": "Uses requested keys",
+          "points": 1,
+          "keywords": [
+            "pickRisk",
+            "strengths",
+            "concerns",
+            "dataToVerify"
+          ]
+        },
+        {
+          "point": "Identifies teleop output as a strength",
+          "points": 1,
+          "keywords": [
+            "teleop",
+            "strength"
+          ]
+        },
+        {
+          "point": "Identifies autonomous inconsistency or downtime as concerns",
+          "points": 1,
+          "keywords": [
+            "auto",
+            "autonomous",
+            "downtime",
+            "mechanical"
+          ]
+        }
       ],
-      "tags": ["2020", "json", "scouting", "risk"],
-      "sourceNote": "Generic structured scouting prompt.",
+      "tags": [
+        "2020",
+        "json",
+        "scouting",
+        "risk"
+      ],
+      "sourceNote": "For 2020 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For scouting-interpretation tasks, verify game terms in official materials and support data claims with The Blue Alliance, Statbotics, team scouting resources, or clearly scoped community analysis.",
       "publicExplanation": "Tests structured scouting reasoning.",
       "verificationStatus": "unverified"
     },
@@ -185,10 +413,20 @@
         "D. Answer only with team preference"
       ],
       "rubric": [
-        { "point": "Selects B", "points": 1, "keywords": ["B"] }
+        {
+          "point": "Selects B",
+          "points": 1,
+          "keywords": [
+            "B"
+          ]
+        }
       ],
-      "tags": ["2020", "rules", "manual-verification"],
-      "sourceNote": "Exact official rule interpretation requires verification from the 2020 Game Manual and official updates.",
+      "tags": [
+        "2020",
+        "rules",
+        "manual-verification"
+      ],
+      "sourceNote": "Verify against the 2020 INFINITE RECHARGE Game Manual, official team updates, and Q&A. Check exact rule language, ranking-point objectives, penalties, and any season-specific terminology before marking source_verified.",
       "publicExplanation": "Tests refusal to hallucinate rule text.",
       "verificationStatus": "unverified",
       "sources": [
@@ -211,12 +449,44 @@
       "prompt": "When comparing 2020 and 2021 model performance, why should an FRC benchmark be careful about historical context and event availability?",
       "expectedAnswer": "A good answer should note that event schedules and available match data were unusual, community analysis may be incomplete, and comparisons should separate official season rules from limited-event observations and later retrospective claims.",
       "rubric": [
-        { "point": "Mentions unusual event availability or limited match data", "points": 1, "keywords": ["event", "limited", "data", "schedule"] },
-        { "point": "Distinguishes official rules from community or retrospective meta", "points": 1, "keywords": ["official", "rules", "community", "retrospective"] },
-        { "point": "Warns against overgeneralizing from small samples", "points": 1, "keywords": ["sample", "overgeneralize", "varies", "context"] }
+        {
+          "point": "Mentions unusual event availability or limited match data",
+          "points": 1,
+          "keywords": [
+            "event",
+            "limited",
+            "data",
+            "schedule"
+          ]
+        },
+        {
+          "point": "Distinguishes official rules from community or retrospective meta",
+          "points": 1,
+          "keywords": [
+            "official",
+            "rules",
+            "community",
+            "retrospective"
+          ]
+        },
+        {
+          "point": "Warns against overgeneralizing from small samples",
+          "points": 1,
+          "keywords": [
+            "sample",
+            "overgeneralize",
+            "varies",
+            "context"
+          ]
+        }
       ],
-      "tags": ["2020", "2021", "historical-meta", "covid-context"],
-      "sourceNote": "Historical context item. Needs reviewer verification and citations for exact event availability claims.",
+      "tags": [
+        "2020",
+        "2021",
+        "historical-meta",
+        "covid-context"
+      ],
+      "sourceNote": "For 2020 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For historical-meta tasks, separate official season facts from retrospective community interpretation. Use official materials for rules and TBA/Statbotics/Chief Delphi/team resources for event or meta context.",
       "publicExplanation": "Tests source-aware historical reasoning.",
       "verificationStatus": "unverified"
     },
@@ -230,12 +500,44 @@
       "prompt": "A model compares 2021 at-home challenge performance directly to normal in-person event performance. What concerns should it raise?",
       "expectedAnswer": "It should discuss format differences, self-reported or nonstandardized conditions, limited defense and interaction data, different strategic incentives, and the need to avoid direct apples-to-apples comparisons.",
       "rubric": [
-        { "point": "Mentions format or field-condition differences", "points": 1, "keywords": ["format", "condition", "field", "at-home"] },
-        { "point": "Mentions missing defense, interaction, or live-match context", "points": 1, "keywords": ["defense", "interaction", "match", "live"] },
-        { "point": "Warns against direct apples-to-apples comparison", "points": 1, "keywords": ["compare", "apples", "direct", "normalize"] }
+        {
+          "point": "Mentions format or field-condition differences",
+          "points": 1,
+          "keywords": [
+            "format",
+            "condition",
+            "field",
+            "at-home"
+          ]
+        },
+        {
+          "point": "Mentions missing defense, interaction, or live-match context",
+          "points": 1,
+          "keywords": [
+            "defense",
+            "interaction",
+            "match",
+            "live"
+          ]
+        },
+        {
+          "point": "Warns against direct apples-to-apples comparison",
+          "points": 1,
+          "keywords": [
+            "compare",
+            "apples",
+            "direct",
+            "normalize"
+          ]
+        }
       ],
-      "tags": ["2021", "scouting", "at-home", "historical-context"],
-      "sourceNote": "Needs verification against official 2021 season materials and challenge documentation.",
+      "tags": [
+        "2021",
+        "scouting",
+        "at-home",
+        "historical-context"
+      ],
+      "sourceNote": "For 2021 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For scouting-interpretation tasks, verify game terms in official materials and support data claims with The Blue Alliance, Statbotics, team scouting resources, or clearly scoped community analysis.",
       "publicExplanation": "Tests awareness that data collection context matters.",
       "verificationStatus": "unverified"
     },
@@ -249,12 +551,41 @@
       "prompt": "Why might a mechanism that performs well in a controlled at-home-style challenge still need extra validation before being trusted for an in-person FRC event?",
       "expectedAnswer": "It may face different traffic, defense, field tolerances, cycle pressure, driver stress, inspection constraints, and repair demands at live events.",
       "rubric": [
-        { "point": "Mentions traffic, defense, or live-match interaction", "points": 1, "keywords": ["traffic", "defense", "interaction"] },
-        { "point": "Mentions field tolerance or environmental variation", "points": 1, "keywords": ["field", "tolerance", "variation"] },
-        { "point": "Mentions driver stress, inspection, repair, or cycle pressure", "points": 1, "keywords": ["driver", "inspection", "repair", "cycle"] }
+        {
+          "point": "Mentions traffic, defense, or live-match interaction",
+          "points": 1,
+          "keywords": [
+            "traffic",
+            "defense",
+            "interaction"
+          ]
+        },
+        {
+          "point": "Mentions field tolerance or environmental variation",
+          "points": 1,
+          "keywords": [
+            "field",
+            "tolerance",
+            "variation"
+          ]
+        },
+        {
+          "point": "Mentions driver stress, inspection, repair, or cycle pressure",
+          "points": 1,
+          "keywords": [
+            "driver",
+            "inspection",
+            "repair",
+            "cycle"
+          ]
+        }
       ],
-      "tags": ["2021", "design", "validation"],
-      "sourceNote": "Generic engineering transfer question.",
+      "tags": [
+        "2021",
+        "design",
+        "validation"
+      ],
+      "sourceNote": "For 2021 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For design-tradeoff tasks, verify game-objective terminology in the official manual. Support meta/design claims with team technical resources, public build blogs, event data, or community discussion when available.",
       "publicExplanation": "Tests whether the model separates controlled tests from event performance.",
       "verificationStatus": "unverified"
     },
@@ -274,10 +605,20 @@
         "D. The benchmark should explain the data context and cite official challenge materials or community sources appropriately"
       ],
       "rubric": [
-        { "point": "Selects D", "points": 1, "keywords": ["D"] }
+        {
+          "point": "Selects D",
+          "points": 1,
+          "keywords": [
+            "D"
+          ]
+        }
       ],
-      "tags": ["2021", "historical-meta", "source-awareness"],
-      "sourceNote": "Needs citations to official 2021 challenge documentation for canonical use.",
+      "tags": [
+        "2021",
+        "historical-meta",
+        "source-awareness"
+      ],
+      "sourceNote": "For 2021 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For historical-meta tasks, separate official season facts from retrospective community interpretation. Use official materials for rules and TBA/Statbotics/Chief Delphi/team resources for event or meta context.",
       "publicExplanation": "Tests cautious historical framing.",
       "verificationStatus": "unverified"
     },
@@ -291,12 +632,42 @@
       "prompt": "In a 2022 playoff picklist, a team has strong scoring bursts but sometimes gets trapped in traffic. Another team scores less but drives clean defense and rarely draws fouls. Explain the picklist decision.",
       "expectedAnswer": "A good answer should compare alliance needs, marginal scoring, traffic tolerance, defense value, foul risk, reliability, and how the choice affects likely playoff matchups.",
       "rubric": [
-        { "point": "Frames the decision around alliance needs and marginal value", "points": 1, "keywords": ["alliance", "need", "marginal", "value"] },
-        { "point": "Considers traffic, defense, or matchup effects", "points": 1, "keywords": ["traffic", "defense", "matchup"] },
-        { "point": "Considers foul risk or reliability", "points": 1, "keywords": ["foul", "reliable", "reliability"] }
+        {
+          "point": "Frames the decision around alliance needs and marginal value",
+          "points": 1,
+          "keywords": [
+            "alliance",
+            "need",
+            "marginal",
+            "value"
+          ]
+        },
+        {
+          "point": "Considers traffic, defense, or matchup effects",
+          "points": 1,
+          "keywords": [
+            "traffic",
+            "defense",
+            "matchup"
+          ]
+        },
+        {
+          "point": "Considers foul risk or reliability",
+          "points": 1,
+          "keywords": [
+            "foul",
+            "reliable",
+            "reliability"
+          ]
+        }
       ],
-      "tags": ["2022", "alliance-selection", "traffic", "defense"],
-      "sourceNote": "Community strategy prompt. Verify season-specific terminology against official materials if made more exact.",
+      "tags": [
+        "2022",
+        "alliance-selection",
+        "traffic",
+        "defense"
+      ],
+      "sourceNote": "For 2022 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For alliance-selection claims, verify game constraints in official materials and support meta claims with event/picklist evidence from The Blue Alliance, Statbotics, Chief Delphi recaps, or public team strategy resources.",
       "publicExplanation": "Tests role fit and playoff matchup reasoning.",
       "verificationStatus": "unverified"
     },
@@ -310,12 +681,42 @@
       "prompt": "A qualification alliance is behind early but still has a path to a ranking objective. What should the strategist consider before pivoting away from pure win-chasing?",
       "expectedAnswer": "They should consider the probability of the ranking objective, remaining time, alliance capability, opponent strength, event ranking context, and whether the pivot still preserves a realistic win path.",
       "rubric": [
-        { "point": "Mentions ranking-objective probability", "points": 1, "keywords": ["ranking", "objective", "probability", "chance"] },
-        { "point": "Mentions time remaining or alliance capability", "points": 1, "keywords": ["time", "remaining", "alliance", "capability"] },
-        { "point": "Mentions win path or opponent strength", "points": 1, "keywords": ["win", "opponent", "strength"] }
+        {
+          "point": "Mentions ranking-objective probability",
+          "points": 1,
+          "keywords": [
+            "ranking",
+            "objective",
+            "probability",
+            "chance"
+          ]
+        },
+        {
+          "point": "Mentions time remaining or alliance capability",
+          "points": 1,
+          "keywords": [
+            "time",
+            "remaining",
+            "alliance",
+            "capability"
+          ]
+        },
+        {
+          "point": "Mentions win path or opponent strength",
+          "points": 1,
+          "keywords": [
+            "win",
+            "opponent",
+            "strength"
+          ]
+        }
       ],
-      "tags": ["2022", "ranking-points", "qualification"],
-      "sourceNote": "Exact 2022 ranking-point conditions need verification from the official manual.",
+      "tags": [
+        "2022",
+        "ranking-points",
+        "qualification"
+      ],
+      "sourceNote": "Verify against the 2022 RAPID REACT Game Manual, official team updates, and Q&A. Check exact foul/contact language, ranking-point objectives, and endgame terminology before marking source_verified. For ranking-point tasks, check the exact season manual and official updates for ranking-point objectives and thresholds before marking source_verified.",
       "publicExplanation": "Tests ranking strategy under uncertainty.",
       "verificationStatus": "unverified"
     },
@@ -329,12 +730,40 @@
       "prompt": "A 2022-style match log shows long cycle times after missed shots or failed pickups. What should scouts or strategists review?",
       "expectedAnswer": "They should review pickup reliability, recovery behavior after misses, driver pathing, defended versus undefended cycle times, shot selection, and whether partners caused congestion.",
       "rubric": [
-        { "point": "Mentions pickup reliability or recovery after misses", "points": 1, "keywords": ["pickup", "recovery", "miss"] },
-        { "point": "Mentions pathing, cycle time, or congestion", "points": 1, "keywords": ["path", "cycle", "congestion"] },
-        { "point": "Mentions defense, shot selection, or partner effects", "points": 1, "keywords": ["defense", "shot", "partner"] }
+        {
+          "point": "Mentions pickup reliability or recovery after misses",
+          "points": 1,
+          "keywords": [
+            "pickup",
+            "recovery",
+            "miss"
+          ]
+        },
+        {
+          "point": "Mentions pathing, cycle time, or congestion",
+          "points": 1,
+          "keywords": [
+            "path",
+            "cycle",
+            "congestion"
+          ]
+        },
+        {
+          "point": "Mentions defense, shot selection, or partner effects",
+          "points": 1,
+          "keywords": [
+            "defense",
+            "shot",
+            "partner"
+          ]
+        }
       ],
-      "tags": ["2022", "match-analysis", "cycle-time"],
-      "sourceNote": "Generic match-analysis prompt.",
+      "tags": [
+        "2022",
+        "match-analysis",
+        "cycle-time"
+      ],
+      "sourceNote": "For 2022 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For match-analysis tasks, verify field and scoring terminology in the official manual. Use The Blue Alliance match videos/data or team review resources when making concrete event claims.",
       "publicExplanation": "Tests diagnosis of cycle efficiency problems.",
       "verificationStatus": "unverified"
     },
@@ -354,10 +783,21 @@
         "D. Ignore the rule question"
       ],
       "rubric": [
-        { "point": "Selects C", "points": 1, "keywords": ["C"] }
+        {
+          "point": "Selects C",
+          "points": 1,
+          "keywords": [
+            "C"
+          ]
+        }
       ],
-      "tags": ["2022", "rules", "fouls", "verification"],
-      "sourceNote": "Exact official foul ruling requires verification from the 2022 Game Manual, updates, and Q&A.",
+      "tags": [
+        "2022",
+        "rules",
+        "fouls",
+        "verification"
+      ],
+      "sourceNote": "Verify against the 2022 RAPID REACT Game Manual, official team updates, and Q&A. Check exact foul/contact language, ranking-point objectives, and endgame terminology before marking source_verified.",
       "publicExplanation": "Tests rule-answer uncertainty handling.",
       "verificationStatus": "unverified",
       "sources": [
@@ -380,12 +820,42 @@
       "prompt": "Return JSON with keys \"pickTier\", \"primaryRole\", \"risks\", and \"dataToVerify\" for a robot with high scoring ceiling, frequent jams, and strong endgame consistency.",
       "expectedAnswer": "{\"pickTier\":\"context-dependent\",\"primaryRole\":\"scoring/endgame contributor\",\"risks\":[\"jams\",\"reliability\"],\"dataToVerify\":[\"jam frequency\",\"cycle consistency\",\"endgame success rate\",\"repair history\"]}",
       "rubric": [
-        { "point": "Uses requested keys", "points": 1, "keywords": ["pickTier", "primaryRole", "risks", "dataToVerify"] },
-        { "point": "Identifies scoring ceiling or endgame as value", "points": 1, "keywords": ["scoring", "ceiling", "endgame"] },
-        { "point": "Identifies jams or reliability as risks", "points": 1, "keywords": ["jam", "jams", "reliability"] }
+        {
+          "point": "Uses requested keys",
+          "points": 1,
+          "keywords": [
+            "pickTier",
+            "primaryRole",
+            "risks",
+            "dataToVerify"
+          ]
+        },
+        {
+          "point": "Identifies scoring ceiling or endgame as value",
+          "points": 1,
+          "keywords": [
+            "scoring",
+            "ceiling",
+            "endgame"
+          ]
+        },
+        {
+          "point": "Identifies jams or reliability as risks",
+          "points": 1,
+          "keywords": [
+            "jam",
+            "jams",
+            "reliability"
+          ]
+        }
       ],
-      "tags": ["2022", "json", "picklist", "scouting"],
-      "sourceNote": "Generic structured scouting prompt.",
+      "tags": [
+        "2022",
+        "json",
+        "picklist",
+        "scouting"
+      ],
+      "sourceNote": "For 2022 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For scouting-interpretation tasks, verify game terms in official materials and support data claims with The Blue Alliance, Statbotics, team scouting resources, or clearly scoped community analysis.",
       "publicExplanation": "Tests structured picklist analysis.",
       "verificationStatus": "unverified"
     },
@@ -399,12 +869,42 @@
       "prompt": "When writing a benchmark about the 2022 meta, why should contributors separate official game facts from event-level strategic observations?",
       "expectedAnswer": "Official game facts require manual citations, while strategic observations can vary by district, regional, event week, team resources, and playoff level.",
       "rubric": [
-        { "point": "Distinguishes official facts from strategic observations", "points": 1, "keywords": ["official", "facts", "strategy", "observations"] },
-        { "point": "Mentions variation by region, event, week, or level", "points": 1, "keywords": ["region", "event", "week", "level"] },
-        { "point": "Mentions need for citations or source notes", "points": 1, "keywords": ["citation", "source", "manual"] }
+        {
+          "point": "Distinguishes official facts from strategic observations",
+          "points": 1,
+          "keywords": [
+            "official",
+            "facts",
+            "strategy",
+            "observations"
+          ]
+        },
+        {
+          "point": "Mentions variation by region, event, week, or level",
+          "points": 1,
+          "keywords": [
+            "region",
+            "event",
+            "week",
+            "level"
+          ]
+        },
+        {
+          "point": "Mentions need for citations or source notes",
+          "points": 1,
+          "keywords": [
+            "citation",
+            "source",
+            "manual"
+          ]
+        }
       ],
-      "tags": ["2022", "historical-meta", "sources"],
-      "sourceNote": "Benchmark methodology item.",
+      "tags": [
+        "2022",
+        "historical-meta",
+        "sources"
+      ],
+      "sourceNote": "For 2022 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For historical-meta tasks, separate official season facts from retrospective community interpretation. Use official materials for rules and TBA/Statbotics/Chief Delphi/team resources for event or meta context.",
       "publicExplanation": "Tests source-aware historical framing.",
       "verificationStatus": "unverified"
     },
@@ -418,12 +918,44 @@
       "prompt": "In a 2023-style strategy discussion, a robot is fast at one common scoring action but weak at endgame balancing. What alliance role and scouting data should be considered?",
       "expectedAnswer": "It may still be valuable as a cycling/scoring specialist if partners cover endgame needs. Check scoring consistency, cycle time, autonomous contribution, fouls, defense resistance, and endgame reliability.",
       "rubric": [
-        { "point": "Identifies a cycling/scoring specialist or role fit", "points": 1, "keywords": ["cycle", "cycling", "scoring", "role"] },
-        { "point": "Mentions partner coverage of the weak endgame", "points": 1, "keywords": ["partner", "cover", "endgame", "balance"] },
-        { "point": "Mentions scouting metrics such as consistency, auto, fouls, or defense", "points": 1, "keywords": ["consistency", "auto", "foul", "defense"] }
+        {
+          "point": "Identifies a cycling/scoring specialist or role fit",
+          "points": 1,
+          "keywords": [
+            "cycle",
+            "cycling",
+            "scoring",
+            "role"
+          ]
+        },
+        {
+          "point": "Mentions partner coverage of the weak endgame",
+          "points": 1,
+          "keywords": [
+            "partner",
+            "cover",
+            "endgame",
+            "balance"
+          ]
+        },
+        {
+          "point": "Mentions scouting metrics such as consistency, auto, fouls, or defense",
+          "points": 1,
+          "keywords": [
+            "consistency",
+            "auto",
+            "foul",
+            "defense"
+          ]
+        }
       ],
-      "tags": ["2023", "strategy", "role-fit", "scouting"],
-      "sourceNote": "Generic 2023-style strategy prompt. Exact game terms should be checked against the official manual.",
+      "tags": [
+        "2023",
+        "strategy",
+        "role-fit",
+        "scouting"
+      ],
+      "sourceNote": "For 2023 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For strategy-meta claims, review official game objectives first, then compare with event-level evidence from The Blue Alliance, Statbotics trends, and clearly labeled community strategy discussions such as Chief Delphi or team strategy resources.",
       "publicExplanation": "Tests role-fit reasoning.",
       "verificationStatus": "unverified"
     },
@@ -437,12 +969,40 @@
       "prompt": "During qualifications, an alliance can spend late-match time improving a ranking objective or protecting a narrow lead. What should it weigh?",
       "expectedAnswer": "It should weigh win probability, ranking-objective probability, current ranking context, partner capabilities, opponent scoring threat, and execution risk.",
       "rubric": [
-        { "point": "Mentions win probability or protecting the lead", "points": 1, "keywords": ["win", "lead", "probability"] },
-        { "point": "Mentions ranking-objective probability or ranking context", "points": 1, "keywords": ["ranking", "objective", "rank"] },
-        { "point": "Mentions partner capability, opponent threat, or execution risk", "points": 1, "keywords": ["partner", "opponent", "risk"] }
+        {
+          "point": "Mentions win probability or protecting the lead",
+          "points": 1,
+          "keywords": [
+            "win",
+            "lead",
+            "probability"
+          ]
+        },
+        {
+          "point": "Mentions ranking-objective probability or ranking context",
+          "points": 1,
+          "keywords": [
+            "ranking",
+            "objective",
+            "rank"
+          ]
+        },
+        {
+          "point": "Mentions partner capability, opponent threat, or execution risk",
+          "points": 1,
+          "keywords": [
+            "partner",
+            "opponent",
+            "risk"
+          ]
+        }
       ],
-      "tags": ["2023", "ranking-points", "qualification"],
-      "sourceNote": "Exact 2023 ranking-point conditions need official manual verification.",
+      "tags": [
+        "2023",
+        "ranking-points",
+        "qualification"
+      ],
+      "sourceNote": "Verify against the 2023 CHARGED UP Game Manual, official team updates, and Q&A. Check exact endgame, ranking-point, protected-area, and scoring terminology before marking source_verified. For ranking-point tasks, check the exact season manual and official updates for ranking-point objectives and thresholds before marking source_verified.",
       "publicExplanation": "Tests qualification tradeoff reasoning.",
       "verificationStatus": "unverified"
     },
@@ -456,12 +1016,40 @@
       "prompt": "A team has a high max score but many matches with major mistakes. Why might scouts rank a lower-ceiling team above it?",
       "expectedAnswer": "The lower-ceiling team may be more predictable, commit fewer mistakes or fouls, and fit an alliance role more reliably in playoff matches.",
       "rubric": [
-        { "point": "Mentions consistency or predictability", "points": 1, "keywords": ["consistent", "predictable", "reliable"] },
-        { "point": "Mentions mistakes, fouls, or downside risk", "points": 1, "keywords": ["mistake", "foul", "risk"] },
-        { "point": "Connects to playoff role fit", "points": 1, "keywords": ["playoff", "role", "fit"] }
+        {
+          "point": "Mentions consistency or predictability",
+          "points": 1,
+          "keywords": [
+            "consistent",
+            "predictable",
+            "reliable"
+          ]
+        },
+        {
+          "point": "Mentions mistakes, fouls, or downside risk",
+          "points": 1,
+          "keywords": [
+            "mistake",
+            "foul",
+            "risk"
+          ]
+        },
+        {
+          "point": "Connects to playoff role fit",
+          "points": 1,
+          "keywords": [
+            "playoff",
+            "role",
+            "fit"
+          ]
+        }
       ],
-      "tags": ["2023", "scouting", "consistency"],
-      "sourceNote": "Generic scouting interpretation prompt.",
+      "tags": [
+        "2023",
+        "scouting",
+        "consistency"
+      ],
+      "sourceNote": "For 2023 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For scouting-interpretation tasks, verify game terms in official materials and support data claims with The Blue Alliance, Statbotics, team scouting resources, or clearly scoped community analysis.",
       "publicExplanation": "Tests ceiling versus floor reasoning.",
       "verificationStatus": "unverified"
     },
@@ -475,12 +1063,42 @@
       "prompt": "A team can add a second game-piece capability late in build season, but it may reduce reliability. How should they decide?",
       "expectedAnswer": "They should compare point and strategic impact, reliability loss, driver practice, programming and integration time, repairability, partner value, and whether the added capability changes picklist value.",
       "rubric": [
-        { "point": "Mentions strategic or point impact of added capability", "points": 1, "keywords": ["point", "strategy", "capability", "value"] },
-        { "point": "Mentions reliability, integration, programming, or repair risk", "points": 1, "keywords": ["reliability", "integration", "programming", "repair"] },
-        { "point": "Mentions practice, partners, or picklist value", "points": 1, "keywords": ["practice", "partner", "picklist"] }
+        {
+          "point": "Mentions strategic or point impact of added capability",
+          "points": 1,
+          "keywords": [
+            "point",
+            "strategy",
+            "capability",
+            "value"
+          ]
+        },
+        {
+          "point": "Mentions reliability, integration, programming, or repair risk",
+          "points": 1,
+          "keywords": [
+            "reliability",
+            "integration",
+            "programming",
+            "repair"
+          ]
+        },
+        {
+          "point": "Mentions practice, partners, or picklist value",
+          "points": 1,
+          "keywords": [
+            "practice",
+            "partner",
+            "picklist"
+          ]
+        }
       ],
-      "tags": ["2023", "design", "complexity"],
-      "sourceNote": "Generic design tradeoff prompt.",
+      "tags": [
+        "2023",
+        "design",
+        "complexity"
+      ],
+      "sourceNote": "For 2023 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For design-tradeoff tasks, verify game-objective terminology in the official manual. Support meta/design claims with team technical resources, public build blogs, event data, or community discussion when available.",
       "publicExplanation": "Tests disciplined feature-scoping reasoning.",
       "verificationStatus": "unverified"
     },
@@ -494,12 +1112,42 @@
       "prompt": "After a 2023-style loss, the drive team says the plan was good but partners repeatedly blocked each other. What should the post-match review cover?",
       "expectedAnswer": "Review starting assignments, lane priority, communication, cycle timing, pickup and scoring queues, contingency plans, and whether a simpler role split would reduce traffic.",
       "rubric": [
-        { "point": "Mentions starting assignments, lane priority, or role split", "points": 1, "keywords": ["starting", "lane", "role", "split"] },
-        { "point": "Mentions communication, queues, or cycle timing", "points": 1, "keywords": ["communication", "queue", "cycle"] },
-        { "point": "Mentions contingency plans or simplifying the strategy", "points": 1, "keywords": ["contingency", "simple", "simpler", "fallback"] }
+        {
+          "point": "Mentions starting assignments, lane priority, or role split",
+          "points": 1,
+          "keywords": [
+            "starting",
+            "lane",
+            "role",
+            "split"
+          ]
+        },
+        {
+          "point": "Mentions communication, queues, or cycle timing",
+          "points": 1,
+          "keywords": [
+            "communication",
+            "queue",
+            "cycle"
+          ]
+        },
+        {
+          "point": "Mentions contingency plans or simplifying the strategy",
+          "points": 1,
+          "keywords": [
+            "contingency",
+            "simple",
+            "simpler",
+            "fallback"
+          ]
+        }
       ],
-      "tags": ["2023", "match-analysis", "traffic"],
-      "sourceNote": "Generic post-match review prompt.",
+      "tags": [
+        "2023",
+        "match-analysis",
+        "traffic"
+      ],
+      "sourceNote": "For 2023 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For match-analysis tasks, verify field and scoring terminology in the official manual. Use The Blue Alliance match videos/data or team review resources when making concrete event claims.",
       "publicExplanation": "Tests tactical review after partner interference.",
       "verificationStatus": "unverified"
     },
@@ -519,10 +1167,20 @@
         "D. Refuse to discuss FRC strategy at all"
       ],
       "rubric": [
-        { "point": "Selects A", "points": 1, "keywords": ["A"] }
+        {
+          "point": "Selects A",
+          "points": 1,
+          "keywords": [
+            "A"
+          ]
+        }
       ],
-      "tags": ["2023", "rules", "source-awareness"],
-      "sourceNote": "Exact 2023 endgame legality requires official manual and update verification.",
+      "tags": [
+        "2023",
+        "rules",
+        "source-awareness"
+      ],
+      "sourceNote": "Verify against the 2023 CHARGED UP Game Manual, official team updates, and Q&A. Check exact endgame, ranking-point, protected-area, and scoring terminology before marking source_verified.",
       "publicExplanation": "Tests official-source discipline.",
       "verificationStatus": "unverified",
       "sources": [
@@ -545,12 +1203,43 @@
       "prompt": "Why can a claim about the 'best 2023 strategy' be misleading without event-level context?",
       "expectedAnswer": "Strategies vary by event strength, robot distribution, week, district or regional ecosystem, playoff level, and partner/opponent capabilities.",
       "rubric": [
-        { "point": "Mentions event strength, week, or regional ecosystem", "points": 1, "keywords": ["event", "week", "region", "district"] },
-        { "point": "Mentions robot distribution or alliance capability", "points": 1, "keywords": ["robot", "alliance", "capability", "distribution"] },
-        { "point": "Warns against universal claims", "points": 1, "keywords": ["misleading", "varies", "context", "universal"] }
+        {
+          "point": "Mentions event strength, week, or regional ecosystem",
+          "points": 1,
+          "keywords": [
+            "event",
+            "week",
+            "region",
+            "district"
+          ]
+        },
+        {
+          "point": "Mentions robot distribution or alliance capability",
+          "points": 1,
+          "keywords": [
+            "robot",
+            "alliance",
+            "capability",
+            "distribution"
+          ]
+        },
+        {
+          "point": "Warns against universal claims",
+          "points": 1,
+          "keywords": [
+            "misleading",
+            "varies",
+            "context",
+            "universal"
+          ]
+        }
       ],
-      "tags": ["2023", "historical-meta", "strategy"],
-      "sourceNote": "Community meta prompt. Needs citations if turned into a claim about a specific event.",
+      "tags": [
+        "2023",
+        "historical-meta",
+        "strategy"
+      ],
+      "sourceNote": "For 2023 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For historical-meta tasks, separate official season facts from retrospective community interpretation. Use official materials for rules and TBA/Statbotics/Chief Delphi/team resources for event or meta context.",
       "publicExplanation": "Tests contextual historical reasoning.",
       "verificationStatus": "unverified"
     },
@@ -564,12 +1253,43 @@
       "prompt": "A 2024-style robot has a fast ground intake but unreliable climb. What role might it fill on an alliance, and what scouting data should be checked?",
       "expectedAnswer": "It may be valuable as a cycling or scoring robot if scoring consistency and cycle time are strong. Check teleop scoring, autonomous contribution, fouls, defense resistance, and endgame reliability.",
       "rubric": [
-        { "point": "Identifies likely cycling or scoring role", "points": 1, "keywords": ["cycle", "cycling", "scoring", "role"] },
-        { "point": "Mentions scoring consistency or cycle time", "points": 1, "keywords": ["consistency", "cycle time", "cycles"] },
-        { "point": "Mentions auto, fouls, defense, or endgame reliability", "points": 1, "keywords": ["auto", "foul", "defense", "endgame"] }
+        {
+          "point": "Identifies likely cycling or scoring role",
+          "points": 1,
+          "keywords": [
+            "cycle",
+            "cycling",
+            "scoring",
+            "role"
+          ]
+        },
+        {
+          "point": "Mentions scoring consistency or cycle time",
+          "points": 1,
+          "keywords": [
+            "consistency",
+            "cycle time",
+            "cycles"
+          ]
+        },
+        {
+          "point": "Mentions auto, fouls, defense, or endgame reliability",
+          "points": 1,
+          "keywords": [
+            "auto",
+            "foul",
+            "defense",
+            "endgame"
+          ]
+        }
       ],
-      "tags": ["2024", "strategy", "scouting", "alliance-selection"],
-      "sourceNote": "Generic 2024-style strategy prompt. Verify official game terminology before canonical use.",
+      "tags": [
+        "2024",
+        "strategy",
+        "scouting",
+        "alliance-selection"
+      ],
+      "sourceNote": "For 2024 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For strategy-meta claims, review official game objectives first, then compare with event-level evidence from The Blue Alliance, Statbotics trends, and clearly labeled community strategy discussions such as Chief Delphi or team strategy resources.",
       "publicExplanation": "Tests robot-role tradeoff reasoning.",
       "verificationStatus": "unverified"
     },
@@ -583,12 +1303,44 @@
       "prompt": "Your first playoff pick is a high-volume scorer. The next available teams include a second high-volume scorer with foul issues and a specialist that fills a weak alliance role. How should you compare them?",
       "expectedAnswer": "Compare marginal value, redundancy, role coverage, foul risk, compatibility, cycle traffic, autonomous plans, endgame coverage, and matchup needs.",
       "rubric": [
-        { "point": "Mentions marginal value, redundancy, or role coverage", "points": 1, "keywords": ["marginal", "redundancy", "role", "coverage"] },
-        { "point": "Mentions foul risk or reliability", "points": 1, "keywords": ["foul", "reliable", "risk"] },
-        { "point": "Mentions traffic, auto/endgame plans, compatibility, or matchup needs", "points": 1, "keywords": ["traffic", "auto", "endgame", "matchup", "compatible"] }
+        {
+          "point": "Mentions marginal value, redundancy, or role coverage",
+          "points": 1,
+          "keywords": [
+            "marginal",
+            "redundancy",
+            "role",
+            "coverage"
+          ]
+        },
+        {
+          "point": "Mentions foul risk or reliability",
+          "points": 1,
+          "keywords": [
+            "foul",
+            "reliable",
+            "risk"
+          ]
+        },
+        {
+          "point": "Mentions traffic, auto/endgame plans, compatibility, or matchup needs",
+          "points": 1,
+          "keywords": [
+            "traffic",
+            "auto",
+            "endgame",
+            "matchup",
+            "compatible"
+          ]
+        }
       ],
-      "tags": ["2024", "alliance-selection", "specialist", "picklist"],
-      "sourceNote": "Community strategy prompt. Needs reviewer input for 2024-specific meta claims.",
+      "tags": [
+        "2024",
+        "alliance-selection",
+        "specialist",
+        "picklist"
+      ],
+      "sourceNote": "For 2024 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For alliance-selection claims, verify game constraints in official materials and support meta claims with event/picklist evidence from The Blue Alliance, Statbotics, Chief Delphi recaps, or public team strategy resources.",
       "publicExplanation": "Tests specialist-versus-redundancy picklist logic.",
       "verificationStatus": "unverified"
     },
@@ -602,12 +1354,41 @@
       "prompt": "A scout note says a robot scores well when undefended but loses efficiency under contact or traffic. What should a strategist do with that information?",
       "expectedAnswer": "They should separate defended and undefended performance, evaluate traffic resistance, identify favorable matchups, consider partner spacing, and decide whether the robot needs protection or a specific role.",
       "rubric": [
-        { "point": "Separates defended from undefended performance", "points": 1, "keywords": ["defended", "undefended", "defense"] },
-        { "point": "Mentions traffic resistance or partner spacing", "points": 1, "keywords": ["traffic", "spacing", "contact"] },
-        { "point": "Mentions matchup or role implications", "points": 1, "keywords": ["matchup", "role", "protect"] }
+        {
+          "point": "Separates defended from undefended performance",
+          "points": 1,
+          "keywords": [
+            "defended",
+            "undefended",
+            "defense"
+          ]
+        },
+        {
+          "point": "Mentions traffic resistance or partner spacing",
+          "points": 1,
+          "keywords": [
+            "traffic",
+            "spacing",
+            "contact"
+          ]
+        },
+        {
+          "point": "Mentions matchup or role implications",
+          "points": 1,
+          "keywords": [
+            "matchup",
+            "role",
+            "protect"
+          ]
+        }
       ],
-      "tags": ["2024", "scouting", "defense", "traffic"],
-      "sourceNote": "Generic scouting interpretation item.",
+      "tags": [
+        "2024",
+        "scouting",
+        "defense",
+        "traffic"
+      ],
+      "sourceNote": "For 2024 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For scouting-interpretation tasks, verify game terms in official materials and support data claims with The Blue Alliance, Statbotics, team scouting resources, or clearly scoped community analysis.",
       "publicExplanation": "Tests contextual use of scouting notes.",
       "verificationStatus": "unverified"
     },
@@ -621,12 +1402,40 @@
       "prompt": "A 2024 qualification alliance is deciding whether to pursue a ranking objective that requires coordination or to run a simpler high-probability scoring plan. What should the answer weigh?",
       "expectedAnswer": "It should weigh ranking-objective probability, win probability, coordination difficulty, time remaining, partner capabilities, opponent threat, and ranking context.",
       "rubric": [
-        { "point": "Compares ranking objective probability and win probability", "points": 1, "keywords": ["ranking", "win", "probability"] },
-        { "point": "Mentions coordination difficulty, partner capability, or time remaining", "points": 1, "keywords": ["coordination", "partner", "time"] },
-        { "point": "Mentions opponent threat or event ranking context", "points": 1, "keywords": ["opponent", "rank", "context"] }
+        {
+          "point": "Compares ranking objective probability and win probability",
+          "points": 1,
+          "keywords": [
+            "ranking",
+            "win",
+            "probability"
+          ]
+        },
+        {
+          "point": "Mentions coordination difficulty, partner capability, or time remaining",
+          "points": 1,
+          "keywords": [
+            "coordination",
+            "partner",
+            "time"
+          ]
+        },
+        {
+          "point": "Mentions opponent threat or event ranking context",
+          "points": 1,
+          "keywords": [
+            "opponent",
+            "rank",
+            "context"
+          ]
+        }
       ],
-      "tags": ["2024", "ranking-points", "coordination"],
-      "sourceNote": "Exact 2024 ranking-point objectives require official manual verification.",
+      "tags": [
+        "2024",
+        "ranking-points",
+        "coordination"
+      ],
+      "sourceNote": "Verify against the 2024 CRESCENDO Game Manual, official team updates, and Q&A. Check exact scoring, ranking-point, protected-area, and endgame terminology before marking source_verified. For ranking-point tasks, check the exact season manual and official updates for ranking-point objectives and thresholds before marking source_verified.",
       "publicExplanation": "Tests coordinated qualification strategy reasoning.",
       "verificationStatus": "unverified"
     },
@@ -640,12 +1449,41 @@
       "prompt": "A 2024-style alliance repeatedly starts matches with autonomous interference between partners. What should be changed before the next match?",
       "expectedAnswer": "Review starting locations, autonomous paths, timing, priority zones, backup routines, communication, and whether each robot's autonomous plan is compatible with partners.",
       "rubric": [
-        { "point": "Mentions starting locations, paths, or timing", "points": 1, "keywords": ["starting", "path", "timing", "auto"] },
-        { "point": "Mentions compatibility or partner coordination", "points": 1, "keywords": ["compatible", "partner", "coordination"] },
-        { "point": "Mentions backup routines or communication", "points": 1, "keywords": ["backup", "routine", "communication"] }
+        {
+          "point": "Mentions starting locations, paths, or timing",
+          "points": 1,
+          "keywords": [
+            "starting",
+            "path",
+            "timing",
+            "auto"
+          ]
+        },
+        {
+          "point": "Mentions compatibility or partner coordination",
+          "points": 1,
+          "keywords": [
+            "compatible",
+            "partner",
+            "coordination"
+          ]
+        },
+        {
+          "point": "Mentions backup routines or communication",
+          "points": 1,
+          "keywords": [
+            "backup",
+            "routine",
+            "communication"
+          ]
+        }
       ],
-      "tags": ["2024", "match-analysis", "autonomous"],
-      "sourceNote": "Generic autonomous coordination prompt.",
+      "tags": [
+        "2024",
+        "match-analysis",
+        "autonomous"
+      ],
+      "sourceNote": "For 2024 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For match-analysis tasks, verify field and scoring terminology in the official manual. Use The Blue Alliance match videos/data or team review resources when making concrete event claims.",
       "publicExplanation": "Tests pre-match planning and adjustment.",
       "verificationStatus": "unverified"
     },
@@ -665,10 +1503,20 @@
         "D. Say the exact penalty needs verification from the official 2024 manual, updates, or Q&A"
       ],
       "rubric": [
-        { "point": "Selects D", "points": 1, "keywords": ["D"] }
+        {
+          "point": "Selects D",
+          "points": 1,
+          "keywords": [
+            "D"
+          ]
+        }
       ],
-      "tags": ["2024", "rules", "manual-verification"],
-      "sourceNote": "Exact official penalty questions need verification from the 2024 Game Manual, updates, and Q&A.",
+      "tags": [
+        "2024",
+        "rules",
+        "manual-verification"
+      ],
+      "sourceNote": "Verify against the 2024 CRESCENDO Game Manual, official team updates, and Q&A. Check exact scoring, ranking-point, protected-area, and endgame terminology before marking source_verified.",
       "publicExplanation": "Tests refusal to hallucinate official penalties.",
       "verificationStatus": "unverified",
       "sources": [
@@ -691,12 +1539,42 @@
       "prompt": "Return JSON with keys \"allianceRole\", \"strengths\", \"weaknesses\", and \"verifyBeforePicking\" for a robot that cycles quickly, has weak endgame, and commits few fouls.",
       "expectedAnswer": "{\"allianceRole\":\"cycling/scoring contributor\",\"strengths\":[\"quick cycles\",\"low foul risk\"],\"weaknesses\":[\"weak endgame\"],\"verifyBeforePicking\":[\"scoring consistency\",\"cycle time under defense\",\"auto contribution\",\"partner endgame coverage\"]}",
       "rubric": [
-        { "point": "Uses requested keys", "points": 1, "keywords": ["allianceRole", "strengths", "weaknesses", "verifyBeforePicking"] },
-        { "point": "Identifies quick cycles and low foul risk as strengths", "points": 1, "keywords": ["cycle", "quick", "foul"] },
-        { "point": "Identifies endgame weakness and verification data", "points": 1, "keywords": ["endgame", "verify", "consistency"] }
+        {
+          "point": "Uses requested keys",
+          "points": 1,
+          "keywords": [
+            "allianceRole",
+            "strengths",
+            "weaknesses",
+            "verifyBeforePicking"
+          ]
+        },
+        {
+          "point": "Identifies quick cycles and low foul risk as strengths",
+          "points": 1,
+          "keywords": [
+            "cycle",
+            "quick",
+            "foul"
+          ]
+        },
+        {
+          "point": "Identifies endgame weakness and verification data",
+          "points": 1,
+          "keywords": [
+            "endgame",
+            "verify",
+            "consistency"
+          ]
+        }
       ],
-      "tags": ["2024", "json", "scouting", "alliance-selection"],
-      "sourceNote": "Generic structured scouting prompt.",
+      "tags": [
+        "2024",
+        "json",
+        "scouting",
+        "alliance-selection"
+      ],
+      "sourceNote": "For 2024 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For scouting-interpretation tasks, verify game terms in official materials and support data claims with The Blue Alliance, Statbotics, team scouting resources, or clearly scoped community analysis.",
       "publicExplanation": "Tests structured role assessment.",
       "verificationStatus": "unverified"
     },
@@ -710,12 +1588,40 @@
       "prompt": "A team is deciding whether to prioritize a faster intake or a more robust scoring mechanism. What tradeoffs should be included in a good answer?",
       "expectedAnswer": "A good answer compares cycle bottlenecks, scoring consistency, reliability, driver practice, integration risk, defense resistance, repairability, and how partners cover weaknesses.",
       "rubric": [
-        { "point": "Mentions cycle bottleneck or scoring consistency", "points": 1, "keywords": ["cycle", "bottleneck", "consistency"] },
-        { "point": "Mentions reliability, integration, or repairability", "points": 1, "keywords": ["reliability", "integration", "repair"] },
-        { "point": "Mentions practice, defense resistance, or partner coverage", "points": 1, "keywords": ["practice", "defense", "partner"] }
+        {
+          "point": "Mentions cycle bottleneck or scoring consistency",
+          "points": 1,
+          "keywords": [
+            "cycle",
+            "bottleneck",
+            "consistency"
+          ]
+        },
+        {
+          "point": "Mentions reliability, integration, or repairability",
+          "points": 1,
+          "keywords": [
+            "reliability",
+            "integration",
+            "repair"
+          ]
+        },
+        {
+          "point": "Mentions practice, defense resistance, or partner coverage",
+          "points": 1,
+          "keywords": [
+            "practice",
+            "defense",
+            "partner"
+          ]
+        }
       ],
-      "tags": ["2024", "design", "tradeoffs"],
-      "sourceNote": "Generic design tradeoff prompt.",
+      "tags": [
+        "2024",
+        "design",
+        "tradeoffs"
+      ],
+      "sourceNote": "For 2024 tasks, verify season terminology against official FIRST materials before adding exact rule or scoring claims. For design-tradeoff tasks, verify game-objective terminology in the official manual. Support meta/design claims with team technical resources, public build blogs, event data, or community discussion when available.",
       "publicExplanation": "Tests prioritization between acquisition speed and scoring robustness.",
       "verificationStatus": "unverified"
     },
@@ -729,12 +1635,43 @@
       "prompt": "In a 2025 REEFSCAPE-style strategy discussion, a robot is excellent at one game-piece task but inconsistent at another. How should a strategist evaluate its alliance role?",
       "expectedAnswer": "A good answer should identify the robot's reliable role, compare how partners cover missing capability, evaluate cycle consistency, autonomous contribution, endgame contribution, foul risk, and matchup needs.",
       "rubric": [
-        { "point": "Identifies reliable role and partner coverage", "points": 1, "keywords": ["role", "reliable", "partner", "cover"] },
-        { "point": "Mentions cycle consistency or autonomous contribution", "points": 1, "keywords": ["cycle", "consistency", "auto", "autonomous"] },
-        { "point": "Mentions endgame, foul risk, or matchup needs", "points": 1, "keywords": ["endgame", "foul", "matchup"] }
+        {
+          "point": "Identifies reliable role and partner coverage",
+          "points": 1,
+          "keywords": [
+            "role",
+            "reliable",
+            "partner",
+            "cover"
+          ]
+        },
+        {
+          "point": "Mentions cycle consistency or autonomous contribution",
+          "points": 1,
+          "keywords": [
+            "cycle",
+            "consistency",
+            "auto",
+            "autonomous"
+          ]
+        },
+        {
+          "point": "Mentions endgame, foul risk, or matchup needs",
+          "points": 1,
+          "keywords": [
+            "endgame",
+            "foul",
+            "matchup"
+          ]
+        }
       ],
-      "tags": ["2025", "reefscape", "strategy", "role-fit"],
-      "sourceNote": "Uses only broad 2025 season framing. Exact game-piece and scoring claims need official manual verification.",
+      "tags": [
+        "2025",
+        "reefscape",
+        "strategy",
+        "role-fit"
+      ],
+      "sourceNote": "For 2025 tasks, use official REEFSCAPE materials for game terminology before relying on community meta. For strategy-meta claims, review official game objectives first, then compare with event-level evidence from The Blue Alliance, Statbotics trends, and clearly labeled community strategy discussions such as Chief Delphi or team strategy resources.",
       "publicExplanation": "Tests role-fit reasoning for a recent season.",
       "verificationStatus": "unverified"
     },
@@ -748,12 +1685,43 @@
       "prompt": "Return JSON with keys \"primaryRole\", \"secondaryRole\", \"risks\", and \"questionsForScouts\" for a 2025 robot that is fast at one scoring route, struggles with traffic, and has a reliable climb or endgame action.",
       "expectedAnswer": "{\"primaryRole\":\"specialized scoring contributor\",\"secondaryRole\":\"endgame contributor\",\"risks\":[\"traffic sensitivity\"],\"questionsForScouts\":[\"defended cycle time\",\"route conflicts\",\"endgame success rate\",\"foul rate\"]}",
       "rubric": [
-        { "point": "Uses requested keys", "points": 1, "keywords": ["primaryRole", "secondaryRole", "risks", "questionsForScouts"] },
-        { "point": "Identifies scoring and endgame roles", "points": 1, "keywords": ["scoring", "endgame", "climb"] },
-        { "point": "Identifies traffic sensitivity and scouting questions", "points": 1, "keywords": ["traffic", "defended", "foul", "cycle"] }
+        {
+          "point": "Uses requested keys",
+          "points": 1,
+          "keywords": [
+            "primaryRole",
+            "secondaryRole",
+            "risks",
+            "questionsForScouts"
+          ]
+        },
+        {
+          "point": "Identifies scoring and endgame roles",
+          "points": 1,
+          "keywords": [
+            "scoring",
+            "endgame",
+            "climb"
+          ]
+        },
+        {
+          "point": "Identifies traffic sensitivity and scouting questions",
+          "points": 1,
+          "keywords": [
+            "traffic",
+            "defended",
+            "foul",
+            "cycle"
+          ]
+        }
       ],
-      "tags": ["2025", "reefscape", "json", "scouting"],
-      "sourceNote": "Generic structured scouting prompt. Verify exact endgame terminology against official 2025 materials.",
+      "tags": [
+        "2025",
+        "reefscape",
+        "json",
+        "scouting"
+      ],
+      "sourceNote": "For 2025 tasks, use official REEFSCAPE materials for game terminology before relying on community meta. For scouting-interpretation tasks, verify game terms in official materials and support data claims with The Blue Alliance, Statbotics, team scouting resources, or clearly scoped community analysis.",
       "publicExplanation": "Tests structured scouting output for a recent season.",
       "verificationStatus": "unverified"
     },
@@ -773,10 +1741,21 @@
         "D. Say contact rules never matter in FRC"
       ],
       "rubric": [
-        { "point": "Selects B", "points": 1, "keywords": ["B"] }
+        {
+          "point": "Selects B",
+          "points": 1,
+          "keywords": [
+            "B"
+          ]
+        }
       ],
-      "tags": ["2025", "reefscape", "rules", "verification"],
-      "sourceNote": "Exact official 2025 rule interpretation requires verification from the REEFSCAPE Game Manual, updates, and Q&A.",
+      "tags": [
+        "2025",
+        "reefscape",
+        "rules",
+        "verification"
+      ],
+      "sourceNote": "Verify against the 2025 REEFSCAPE Game Manual, official team updates, and Q&A. Check exact game-piece, scoring, protected-area, ranking-point, and endgame terminology before marking source_verified.",
       "publicExplanation": "Tests rule-source caution for the newest included season.",
       "verificationStatus": "unverified",
       "sources": [
@@ -799,12 +1778,44 @@
       "prompt": "A 2025 playoff alliance already has broad capability but lacks one high-value specialist role. The best specialist has low average points but strong consistency in that role. How should the alliance evaluate the pick?",
       "expectedAnswer": "They should evaluate role scarcity, marginal value, consistency, partner coverage, matchup needs, traffic fit, autonomous/endgame contribution, and whether the specialist changes playoff win probability.",
       "rubric": [
-        { "point": "Mentions role scarcity or marginal value", "points": 1, "keywords": ["scarcity", "marginal", "role", "value"] },
-        { "point": "Mentions consistency and partner coverage", "points": 1, "keywords": ["consistency", "partner", "coverage"] },
-        { "point": "Mentions matchup, traffic, auto/endgame, or win probability", "points": 1, "keywords": ["matchup", "traffic", "auto", "endgame", "win"] }
+        {
+          "point": "Mentions role scarcity or marginal value",
+          "points": 1,
+          "keywords": [
+            "scarcity",
+            "marginal",
+            "role",
+            "value"
+          ]
+        },
+        {
+          "point": "Mentions consistency and partner coverage",
+          "points": 1,
+          "keywords": [
+            "consistency",
+            "partner",
+            "coverage"
+          ]
+        },
+        {
+          "point": "Mentions matchup, traffic, auto/endgame, or win probability",
+          "points": 1,
+          "keywords": [
+            "matchup",
+            "traffic",
+            "auto",
+            "endgame",
+            "win"
+          ]
+        }
       ],
-      "tags": ["2025", "reefscape", "alliance-selection", "specialist"],
-      "sourceNote": "Community strategy prompt. Needs 2025 event-meta review before canonical use.",
+      "tags": [
+        "2025",
+        "reefscape",
+        "alliance-selection",
+        "specialist"
+      ],
+      "sourceNote": "For 2025 tasks, use official REEFSCAPE materials for game terminology before relying on community meta. For alliance-selection claims, verify game constraints in official materials and support meta claims with event/picklist evidence from The Blue Alliance, Statbotics, Chief Delphi recaps, or public team strategy resources.",
       "publicExplanation": "Tests specialist valuation in alliance selection.",
       "verificationStatus": "unverified"
     },
@@ -818,12 +1829,41 @@
       "prompt": "A 2025-style alliance has good individual robots but loses time because all three robots prefer the same route or scoring area. What should be reviewed?",
       "expectedAnswer": "Review route assignments, timing, traffic lanes, role split, partner communication, fallback options, and whether autonomous or teleop paths conflict.",
       "rubric": [
-        { "point": "Mentions route assignments, lanes, or traffic", "points": 1, "keywords": ["route", "lane", "traffic"] },
-        { "point": "Mentions role split or partner communication", "points": 1, "keywords": ["role", "partner", "communication"] },
-        { "point": "Mentions fallback options or path conflicts", "points": 1, "keywords": ["fallback", "path", "conflict"] }
+        {
+          "point": "Mentions route assignments, lanes, or traffic",
+          "points": 1,
+          "keywords": [
+            "route",
+            "lane",
+            "traffic"
+          ]
+        },
+        {
+          "point": "Mentions role split or partner communication",
+          "points": 1,
+          "keywords": [
+            "role",
+            "partner",
+            "communication"
+          ]
+        },
+        {
+          "point": "Mentions fallback options or path conflicts",
+          "points": 1,
+          "keywords": [
+            "fallback",
+            "path",
+            "conflict"
+          ]
+        }
       ],
-      "tags": ["2025", "reefscape", "match-analysis", "traffic"],
-      "sourceNote": "Generic 2025-style match-analysis prompt. Verify exact field locations before adding official terminology.",
+      "tags": [
+        "2025",
+        "reefscape",
+        "match-analysis",
+        "traffic"
+      ],
+      "sourceNote": "For 2025 tasks, use official REEFSCAPE materials for game terminology before relying on community meta. For match-analysis tasks, verify field and scoring terminology in the official manual. Use The Blue Alliance match videos/data or team review resources when making concrete event claims.",
       "publicExplanation": "Tests coordination diagnosis.",
       "verificationStatus": "unverified"
     },
@@ -837,12 +1877,44 @@
       "prompt": "For a 2025 build-season design review, a team can specialize in one task or build a more complex robot with broader capability. What should a strong answer include?",
       "expectedAnswer": "A strong answer should discuss role value, mechanism reliability, cycle time, software complexity, driver practice, integration risk, event meta uncertainty, partner compatibility, and repairability.",
       "rubric": [
-        { "point": "Mentions role value, specialization, or broad capability", "points": 1, "keywords": ["role", "specialize", "specialization", "capability"] },
-        { "point": "Mentions reliability, cycle time, software, or integration risk", "points": 1, "keywords": ["reliability", "cycle", "software", "integration"] },
-        { "point": "Mentions practice, meta uncertainty, partner compatibility, or repairability", "points": 1, "keywords": ["practice", "meta", "partner", "repair"] }
+        {
+          "point": "Mentions role value, specialization, or broad capability",
+          "points": 1,
+          "keywords": [
+            "role",
+            "specialize",
+            "specialization",
+            "capability"
+          ]
+        },
+        {
+          "point": "Mentions reliability, cycle time, software, or integration risk",
+          "points": 1,
+          "keywords": [
+            "reliability",
+            "cycle",
+            "software",
+            "integration"
+          ]
+        },
+        {
+          "point": "Mentions practice, meta uncertainty, partner compatibility, or repairability",
+          "points": 1,
+          "keywords": [
+            "practice",
+            "meta",
+            "partner",
+            "repair"
+          ]
+        }
       ],
-      "tags": ["2025", "reefscape", "design", "tradeoffs"],
-      "sourceNote": "Generic design tradeoff prompt. Needs community review against 2025 build and event meta.",
+      "tags": [
+        "2025",
+        "reefscape",
+        "design",
+        "tradeoffs"
+      ],
+      "sourceNote": "For 2025 tasks, use official REEFSCAPE materials for game terminology before relying on community meta. For design-tradeoff tasks, verify game-objective terminology in the official manual. Support meta/design claims with team technical resources, public build blogs, event data, or community discussion when available.",
       "publicExplanation": "Tests build-scope reasoning for a recent season.",
       "verificationStatus": "unverified"
     }

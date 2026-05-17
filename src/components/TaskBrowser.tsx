@@ -1,6 +1,6 @@
 import { Filter, Search } from 'lucide-react';
 import { useMemo, useState } from 'react';
-import type { BenchmarkCategory, BenchmarkTask } from '../types/benchmark';
+import type { BenchmarkCategory, BenchmarkTask, VerificationStatus } from '../types/benchmark';
 
 interface TaskBrowserProps {
   tasks: BenchmarkTask[];
@@ -21,6 +21,14 @@ const categoryLabels: Record<BenchmarkCategory, string> = {
   historical_meta: 'Historical meta',
 };
 
+const verificationLabels: Record<VerificationStatus, string> = {
+  unverified: 'Unverified',
+  community_reviewed: 'Community reviewed',
+  source_verified: 'Source verified',
+};
+
+const verificationStatuses: VerificationStatus[] = ['unverified', 'community_reviewed', 'source_verified'];
+
 export function TaskBrowser({
   tasks,
   selectedCategories,
@@ -29,6 +37,8 @@ export function TaskBrowser({
   onSelectedSeasonsChange,
 }: TaskBrowserProps) {
   const [query, setQuery] = useState('');
+  const [selectedVerificationStatuses, setSelectedVerificationStatuses] =
+    useState<VerificationStatus[]>(verificationStatuses);
   const categories = useMemo(() => Array.from(new Set(tasks.map((task) => task.category))).sort(), [tasks]);
   const seasons = useMemo(() => Array.from(new Set(tasks.map((task) => task.season))).sort((a, b) => b - a), [tasks]);
 
@@ -40,7 +50,8 @@ export function TaskBrowser({
     return (
       queryMatch &&
       selectedCategories.includes(task.category) &&
-      selectedSeasons.includes(task.season)
+      selectedSeasons.includes(task.season) &&
+      selectedVerificationStatuses.includes(task.verificationStatus ?? 'unverified')
     );
   });
 
@@ -57,6 +68,14 @@ export function TaskBrowser({
       selectedSeasons.includes(season)
         ? selectedSeasons.filter((item) => item !== season)
         : [...selectedSeasons, season],
+    );
+  };
+
+  const toggleVerificationStatus = (status: VerificationStatus) => {
+    setSelectedVerificationStatuses((current) =>
+      current.includes(status)
+        ? current.filter((item) => item !== status)
+        : [...current, status],
     );
   };
 
@@ -90,6 +109,7 @@ export function TaskBrowser({
                 <span>{task.gameName}</span>
                 <span>{categoryLabels[task.category]}</span>
                 <span>{task.difficulty}</span>
+                <VerificationBadge status={task.verificationStatus ?? 'unverified'} />
               </div>
               <h3 className="mt-3 font-semibold text-white">{task.id}</h3>
               <p className="mt-2 line-clamp-4 text-sm leading-6 text-slate-300">{task.prompt}</p>
@@ -131,8 +151,39 @@ export function TaskBrowser({
               ))}
             </div>
           </div>
+          <div>
+            <h3 className="text-sm font-semibold text-white">Verification</h3>
+            <div className="mt-3 space-y-2">
+              {verificationStatuses.map((status) => (
+                <label key={status} className="flex items-center gap-2 text-sm text-slate-300">
+                  <input
+                    type="checkbox"
+                    checked={selectedVerificationStatuses.includes(status)}
+                    onChange={() => toggleVerificationStatus(status)}
+                    className="h-4 w-4 accent-blue-400"
+                  />
+                  {verificationLabels[status]}
+                </label>
+              ))}
+            </div>
+          </div>
         </aside>
       </div>
     </section>
+  );
+}
+
+function VerificationBadge({ status }: { status: VerificationStatus }) {
+  const className =
+    status === 'source_verified'
+      ? 'border-emerald-300/30 bg-emerald-400/10 text-emerald-100'
+      : status === 'community_reviewed'
+        ? 'border-blue-300/30 bg-blue-400/10 text-blue-100'
+        : 'border-amber-300/30 bg-amber-400/10 text-amber-100';
+
+  return (
+    <span className={`rounded-full border px-2 py-0.5 font-medium ${className}`}>
+      {verificationLabels[status]}
+    </span>
   );
 }
