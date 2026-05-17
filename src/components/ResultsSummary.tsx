@@ -1,18 +1,18 @@
-import { ChevronDown, Download, Gauge, TableProperties } from 'lucide-react';
+import { Download, ExternalLink, Gauge, TableProperties, X } from 'lucide-react';
 import { useMemo, useState } from 'react';
-import { benchmarkVersion } from '../data/sampleBenchmarks';
 import { downloadCsv, downloadJson } from '../lib/exportResults';
 import { calculateScoreBreakdown } from '../lib/scoring';
 import type { BenchmarkResult, ScoreBreakdown } from '../types/benchmark';
 
 interface ResultsSummaryProps {
   results: BenchmarkResult[];
+  benchmarkVersion: string;
   onUpdateScore: (questionId: string, score: number) => void;
 }
 
-export function ResultsSummary({ results, onUpdateScore }: ResultsSummaryProps) {
+export function ResultsSummary({ results, benchmarkVersion, onUpdateScore }: ResultsSummaryProps) {
   const summary = useMemo(() => calculateScoreBreakdown(results), [results]);
-  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+  const [selectedResult, setSelectedResult] = useState<BenchmarkResult | null>(null);
 
   const exportPayload = {
     app: 'FRCBench' as const,
@@ -81,16 +81,20 @@ export function ResultsSummary({ results, onUpdateScore }: ResultsSummaryProps) 
                 <th className="px-4 py-3 font-medium">Category</th>
                 <th className="px-4 py-3 font-medium">Score</th>
                 <th className="px-4 py-3 font-medium">Latency</th>
-                <th className="px-4 py-3 font-medium">Answer</th>
+                <th className="px-4 py-3 font-medium">Details</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-white/10">
               {results.map((result) => (
-                <tr key={result.questionId} className="align-top text-slate-300">
+                <tr
+                  key={result.questionId}
+                  className="cursor-pointer align-top text-slate-300 transition hover:bg-white/[0.03]"
+                  onClick={() => setSelectedResult(result)}
+                >
                   <td className="px-4 py-3 font-medium text-white">{result.questionId}</td>
                   <td className="px-4 py-3">{result.season}</td>
                   <td className="px-4 py-3">{result.category}</td>
-                  <td className="px-4 py-3">
+                  <td className="px-4 py-3" onClick={(event) => event.stopPropagation()}>
                     <div className="flex items-center gap-2">
                       <input
                         aria-label={`Score for ${result.questionId}`}
@@ -109,20 +113,14 @@ export function ResultsSummary({ results, onUpdateScore }: ResultsSummaryProps) 
                   <td className="px-4 py-3">
                     <button
                       type="button"
-                      onClick={() => setExpanded((current) => ({ ...current, [result.questionId]: !current[result.questionId] }))}
-                      className="inline-flex items-center gap-1 text-blue-200 hover:text-blue-100"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        setSelectedResult(result);
+                      }}
+                      className="text-blue-200 hover:text-blue-100"
                     >
-                      <ChevronDown className={`h-4 w-4 transition ${expanded[result.questionId] ? 'rotate-180' : ''}`} />
-                      {expanded[result.questionId] ? 'Hide' : 'Expand'}
+                      View details
                     </button>
-                    {expanded[result.questionId] && (
-                      <div className="mt-3 max-w-2xl space-y-3 rounded-md border border-white/10 bg-field-black p-3">
-                        <AnswerBlock title="Prompt" text={result.prompt} />
-                        <AnswerBlock title="Model answer" text={result.modelAnswer} />
-                        <AnswerBlock title="Expected answer" text={result.expectedAnswer} />
-                        {result.notes && <AnswerBlock title="Scoring notes" text={result.notes} />}
-                      </div>
-                    )}
                   </td>
                 </tr>
               ))}
@@ -130,6 +128,19 @@ export function ResultsSummary({ results, onUpdateScore }: ResultsSummaryProps) 
           </table>
         </div>
       </section>
+
+      {selectedResult && (
+        <ResultDetailsModal
+          result={selectedResult}
+          onClose={() => setSelectedResult(null)}
+          onUpdateScore={(questionId, score) => {
+            onUpdateScore(questionId, score);
+            setSelectedResult((current) =>
+              current && current.questionId === questionId ? { ...current, score } : current,
+            );
+          }}
+        />
+      )}
     </div>
   );
 }
@@ -162,6 +173,132 @@ function AnswerBlock({ title, text }: { title: string; text: string }) {
     <div>
       <h4 className="text-xs font-semibold uppercase tracking-wide text-slate-500">{title}</h4>
       <p className="mt-1 whitespace-pre-wrap text-sm leading-6 text-slate-200">{text}</p>
+    </div>
+  );
+}
+
+function ResultDetailsModal({
+  result,
+  onClose,
+  onUpdateScore,
+}: {
+  result: BenchmarkResult;
+  onClose: () => void;
+  onUpdateScore: (questionId: string, score: number) => void;
+}) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm" role="dialog" aria-modal="true">
+      <div className="max-h-[90vh] w-full max-w-5xl overflow-y-auto rounded-lg border border-white/10 bg-field-panel shadow-2xl">
+        <div className="sticky top-0 flex items-start justify-between gap-4 border-b border-white/10 bg-field-panel p-5">
+          <div>
+            <p className="text-sm uppercase tracking-wider text-blue-200">Result details</p>
+            <h2 className="mt-1 text-2xl font-semibold text-white">{result.questionId}</h2>
+            <p className="mt-1 text-sm text-slate-400">
+              {result.gameName ? `${result.gameName} · ` : ''}
+              {result.season} · {result.category} · {result.difficulty}
+            </p>
+          </div>
+          <button type="button" onClick={onClose} className="button-secondary px-3" aria-label="Close result details">
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+
+        <div className="grid gap-5 p-5 lg:grid-cols-[1fr_280px]">
+          <div className="space-y-5">
+            <AnswerBlock title="Prompt" text={result.prompt} />
+            <AnswerBlock title="Model answer" text={result.modelAnswer} />
+            <AnswerBlock title="Expected answer" text={result.expectedAnswer} />
+            {result.notes && <AnswerBlock title="Scoring notes" text={result.notes} />}
+            {result.sourceNote && <AnswerBlock title="Source notes" text={result.sourceNote} />}
+
+            <div>
+              <h4 className="text-xs font-semibold uppercase tracking-wide text-slate-500">Rubric</h4>
+              {result.rubric?.length ? (
+                <ul className="mt-2 space-y-2">
+                  {result.rubric.map((item) => (
+                    <li key={`${item.point}-${item.points}`} className="rounded-md border border-white/10 bg-field-black p-3 text-sm text-slate-200">
+                      <span className="font-medium text-white">{item.points} pt:</span> {item.point}
+                      {item.keywords?.length ? (
+                        <span className="mt-1 block text-xs text-slate-500">Keywords: {item.keywords.join(', ')}</span>
+                      ) : null}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="mt-2 text-sm text-slate-400">No rubric was provided for this task.</p>
+              )}
+            </div>
+
+            <div>
+              <h4 className="text-xs font-semibold uppercase tracking-wide text-slate-500">Sources</h4>
+              {result.sources?.length ? (
+                <ul className="mt-2 space-y-2">
+                  {result.sources.map((source) => (
+                    <li key={`${source.title}-${source.url}`} className="rounded-md border border-white/10 bg-field-black p-3 text-sm text-slate-200">
+                      <a href={source.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-blue-200 hover:text-blue-100">
+                        {source.title}
+                        <ExternalLink className="h-3 w-3" />
+                      </a>
+                      <p className="mt-1 text-xs text-slate-500">
+                        {source.publisher}, {source.year}. {source.note}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="mt-2 text-sm text-slate-400">No citations are attached to this task yet.</p>
+              )}
+            </div>
+          </div>
+
+          <aside className="space-y-4 rounded-lg border border-white/10 bg-field-rail p-4">
+            <div>
+              <h3 className="text-sm font-semibold text-white">Score</h3>
+              <div className="mt-2 flex items-center gap-2">
+                <input
+                  aria-label={`Score for ${result.questionId}`}
+                  type="number"
+                  min={0}
+                  max={result.maxScore}
+                  step={0.5}
+                  value={result.score}
+                  onChange={(event) => onUpdateScore(result.questionId, Number(event.target.value))}
+                  className="w-24 rounded-md border border-white/10 bg-field-black px-2 py-1 text-white"
+                />
+                <span className="text-slate-300">/ {result.maxScore}</span>
+              </div>
+            </div>
+            <MetaItem label="Verification" value={result.verificationStatus ?? 'unverified'} />
+            <MetaItem label="Scoring type" value={result.scoringType} />
+            <MetaItem label="Model" value={result.modelName} />
+            <MetaItem label="Latency" value={`${result.latency} ms`} />
+            <MetaItem label="Timestamp" value={result.timestamp} />
+            <div>
+              <h3 className="text-sm font-semibold text-white">Tags</h3>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {result.tags?.length ? (
+                  result.tags.map((tag) => (
+                    <span key={tag} className="rounded-full border border-white/10 bg-white/[0.04] px-2 py-1 text-xs text-slate-300">
+                      {tag}
+                    </span>
+                  ))
+                ) : (
+                  <span className="text-sm text-slate-500">No tags</span>
+                )}
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MetaItem({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <h3 className="text-sm font-semibold text-white">{label}</h3>
+      <p className="mt-1 break-words text-sm text-slate-400">{value}</p>
     </div>
   );
 }

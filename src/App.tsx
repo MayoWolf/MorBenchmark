@@ -1,12 +1,12 @@
-import { Bot, Github, Home, LockKeyhole, Play, ShieldCheck, Trophy } from 'lucide-react';
+import { Bot, Github, Home, LockKeyhole, Play, Scale, ShieldCheck, Trophy } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { useMemo, useState } from 'react';
-import { benchmarkVersion, sampleBenchmarks } from './data/sampleBenchmarks';
+import { sampleBenchmarkPack } from './data/sampleBenchmarks';
 import { BenchmarkRunner } from './components/BenchmarkRunner';
 import { ResultsSummary } from './components/ResultsSummary';
-import type { BenchmarkResult, ModelProviderConfig } from './types/benchmark';
+import type { BenchmarkPack, BenchmarkResult, ModelProviderConfig } from './types/benchmark';
 
-type Page = 'home' | 'runner' | 'results';
+type Page = 'home' | 'runner' | 'results' | 'scoring';
 
 const defaultConfig: ModelProviderConfig = {
   providerName: 'OpenAI-compatible API',
@@ -22,17 +22,20 @@ function App() {
   const [page, setPage] = useState<Page>('home');
   const [demoMode, setDemoMode] = useState(true);
   const [config, setConfig] = useState<ModelProviderConfig>(() => loadStoredConfig());
+  const [benchmarkPack, setBenchmarkPack] = useState<BenchmarkPack>(sampleBenchmarkPack);
   const [results, setResults] = useState<BenchmarkResult[]>([]);
 
   const stats = useMemo(() => {
-    const seasons = new Set(sampleBenchmarks.map((task) => task.season));
-    const categories = new Set(sampleBenchmarks.map((task) => task.category));
+    const seasons = new Set(benchmarkPack.tasks.map((task) => task.season));
+    const categories = new Set(benchmarkPack.tasks.map((task) => task.category));
     return {
-      tasks: sampleBenchmarks.length,
+      tasks: benchmarkPack.tasks.length,
       seasons: seasons.size,
       categories: categories.size,
+      packName: benchmarkPack.name,
+      packVersion: benchmarkPack.version,
     };
-  }, []);
+  }, [benchmarkPack]);
 
   const updateScore = (questionId: string, score: number) => {
     setResults((current) =>
@@ -72,6 +75,13 @@ function App() {
             >
               Results
             </NavButton>
+            <NavButton
+              active={page === 'scoring'}
+              onClick={() => setPage('scoring')}
+              icon={<Scale className="h-4 w-4" />}
+            >
+              Scoring
+            </NavButton>
           </nav>
         </div>
       </header>
@@ -84,12 +94,24 @@ function App() {
           <BenchmarkRunner
             config={config}
             demoMode={demoMode}
+            benchmarkPack={benchmarkPack}
             onConfigChange={setConfig}
             onDemoModeChange={setDemoMode}
+            onBenchmarkPackChange={(pack) => {
+              setBenchmarkPack(pack);
+              setResults([]);
+            }}
             onResults={setResults}
           />
         )}
-        {page === 'results' && <ResultsSummary results={results} onUpdateScore={updateScore} />}
+        {page === 'results' && (
+          <ResultsSummary
+            results={results}
+            benchmarkVersion={benchmarkPack.version}
+            onUpdateScore={updateScore}
+          />
+        )}
+        {page === 'scoring' && <ScoringGuide />}
       </main>
     </div>
   );
@@ -99,7 +121,7 @@ function HomePage({
   stats,
   onStart,
 }: {
-  stats: { tasks: number; seasons: number; categories: number };
+  stats: { tasks: number; seasons: number; categories: number; packName: string; packVersion: string };
   onStart: () => void;
 }) {
   return (
@@ -148,7 +170,9 @@ function HomePage({
             <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/10">
               <div className="h-full w-3/4 rounded-full bg-gradient-to-r from-field-blue via-emerald-400 to-field-red" />
             </div>
-            <p className="mt-4 text-sm text-slate-400">{stats.categories} categories in {benchmarkVersion}</p>
+            <p className="mt-4 text-sm text-slate-400">
+              {stats.categories} categories in {stats.packName} {stats.packVersion}
+            </p>
           </div>
         </div>
       </section>
@@ -177,6 +201,48 @@ function HomePage({
           FRCBench runs in your browser. Your API key is stored locally if you choose to save it. Benchmark prompts and
           responses are not uploaded to an FRCBench server in v1.
         </p>
+      </section>
+    </div>
+  );
+}
+
+function ScoringGuide() {
+  return (
+    <div className="space-y-6">
+      <section className="rounded-lg border border-white/10 bg-field-panel p-6">
+        <div className="flex items-center gap-2 text-sm uppercase tracking-wider text-blue-200">
+          <Scale className="h-4 w-4" />
+          Scoring
+        </div>
+        <h1 className="mt-3 text-3xl font-semibold text-white">How FRCBench scores v1 runs</h1>
+        <p className="mt-3 max-w-3xl leading-7 text-slate-300">
+          FRCBench favors transparent scoring over pretending that subjective strategy answers can be judged perfectly.
+          The exported result file includes model answers, expected answers, notes, and task metadata so people can audit
+          scores after a run.
+        </p>
+      </section>
+
+      <section className="grid gap-4 md:grid-cols-2">
+        <InfoCard
+          icon={<Trophy className="h-5 w-5" />}
+          title="Exact and multiple choice"
+          body="Multiple-choice tasks use exact letter matching against expectedAnswer. This is useful for smoke tests and clear factual checks, but it should not dominate a strategy benchmark."
+        />
+        <InfoCard
+          icon={<Scale className="h-5 w-5" />}
+          title="Keyword scoring"
+          body="Short-answer and JSON tasks use rubric keywords as a first-pass signal. Keyword scoring is explainable, but it can miss good paraphrases and reward shallow wording."
+        />
+        <InfoCard
+          icon={<ShieldCheck className="h-5 w-5" />}
+          title="Manual rubric review"
+          body="Rubric and manual tasks are captured with a zero starting score in v1 so reviewers can inspect the answer and adjust the score in the results table."
+        />
+        <InfoCard
+          icon={<Bot className="h-5 w-5" />}
+          title="Judge models later"
+          body="Model-judge grading is not automatic yet because judges can share blind spots with the tested model, prefer verbose answers, and encode provider-specific bias."
+        />
       </section>
     </div>
   );

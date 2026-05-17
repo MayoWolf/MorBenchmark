@@ -1,5 +1,6 @@
 import sampleBenchmarkFile from '../benchmarks/sample-v0.1.0.json';
-import type { BenchmarkTask } from '../types/benchmark';
+import type { BenchmarkPack } from '../types/benchmark';
 
-export const benchmarkVersion = sampleBenchmarkFile.version;
-export const sampleBenchmarks = sampleBenchmarkFile.tasks as BenchmarkTask[];
+export const sampleBenchmarkPack = sampleBenchmarkFile as BenchmarkPack;
+export const benchmarkVersion = sampleBenchmarkPack.version;
+export const sampleBenchmarks = sampleBenchmarkPack.tasks;

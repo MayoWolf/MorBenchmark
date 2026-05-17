@@ -1,8 +1,11 @@
 {
+  "id": "frcbench-sample",
+  "name": "FRCBench Sample Pack",
   "version": "sample-v0.1.0",
   "description": "FRCBench starter benchmark pack. Prompts are intentionally generic where official season facts would require verification.",
   "tasks": [
     {
+      "verificationStatus": "unverified",
       "id": "2024-meta-001",
       "season": 2024,
       "gameName": "CRESCENDO",
@@ -12,15 +15,46 @@
       "prompt": "A team has a fast ground intake but unreliable climb. In a typical 2024-style strategy discussion, what role might they fill on an alliance and what scouting data would you check before picking them?",
       "expectedAnswer": "They may be valuable as a cycling/scoring robot if their scoring consistency and cycle time are strong. Check teleop scoring, auto contribution, fouls, defense resistance, and endgame reliability.",
       "rubric": [
-        { "point": "Identifies likely cycling/scoring role", "points": 1, "keywords": ["cycle", "cycling", "score", "scoring"] },
-        { "point": "Mentions checking scoring consistency or cycle time", "points": 1, "keywords": ["consistency", "cycle time", "cycles"] },
-        { "point": "Mentions auto/endgame/foul data as supporting scouting metrics", "points": 1, "keywords": ["auto", "endgame", "foul", "defense"] }
+        {
+          "point": "Identifies likely cycling/scoring role",
+          "points": 1,
+          "keywords": [
+            "cycle",
+            "cycling",
+            "score",
+            "scoring"
+          ]
+        },
+        {
+          "point": "Mentions checking scoring consistency or cycle time",
+          "points": 1,
+          "keywords": [
+            "consistency",
+            "cycle time",
+            "cycles"
+          ]
+        },
+        {
+          "point": "Mentions auto/endgame/foul data as supporting scouting metrics",
+          "points": 1,
+          "keywords": [
+            "auto",
+            "endgame",
+            "foul",
+            "defense"
+          ]
+        }
       ],
-      "tags": ["strategy", "scouting", "alliance-selection"],
+      "tags": [
+        "strategy",
+        "scouting",
+        "alliance-selection"
+      ],
       "sourceNote": "Sample generic strategy prompt. Verify against official season context before using as canonical.",
       "publicExplanation": "Tests whether the model can reason about robot role tradeoffs instead of only reciting rules."
     },
     {
+      "verificationStatus": "unverified",
       "id": "2023-scouting-001",
       "season": 2023,
       "gameName": "CHARGED UP",
@@ -30,14 +64,37 @@
       "prompt": "A scouting sheet shows Team A has lower average scoring than Team B but far fewer fouls and much higher match-to-match consistency. Give one reason Team A could still be the better playoff pick.",
       "expectedAnswer": "Team A may be more predictable and less likely to lose points through penalties, which can matter more than peak scoring in tight playoff matches.",
       "rubric": [
-        { "point": "Notes value of consistency or predictability", "points": 1, "keywords": ["consistent", "consistency", "predictable", "reliable"] },
-        { "point": "Notes risk reduction from fewer fouls or penalties", "points": 1, "keywords": ["foul", "penalty", "penalties", "risk"] }
+        {
+          "point": "Notes value of consistency or predictability",
+          "points": 1,
+          "keywords": [
+            "consistent",
+            "consistency",
+            "predictable",
+            "reliable"
+          ]
+        },
+        {
+          "point": "Notes risk reduction from fewer fouls or penalties",
+          "points": 1,
+          "keywords": [
+            "foul",
+            "penalty",
+            "penalties",
+            "risk"
+          ]
+        }
       ],
-      "tags": ["scouting", "playoffs", "risk"],
+      "tags": [
+        "scouting",
+        "playoffs",
+        "risk"
+      ],
       "sourceNote": "Generic scouting prompt. Does not rely on unverified official rule details.",
       "publicExplanation": "Tests ability to balance average output against risk and variance."
     },
     {
+      "verificationStatus": "unverified",
       "id": "2022-alliance-001",
       "season": 2022,
       "gameName": "RAPID REACT",
@@ -47,15 +104,47 @@
       "prompt": "You captain a playoff alliance and already have two strong scorers. The best remaining teams are a third scorer with occasional breakdowns and a lower-scoring defender with reliable driving. Explain how you would decide between them.",
       "expectedAnswer": "Compare marginal scoring need, reliability, defensive value, compatibility with traffic patterns, foul risk, repairability, and how the pick changes matchups against likely opponents.",
       "rubric": [
-        { "point": "Compares marginal value instead of raw scoring only", "points": 1, "keywords": ["marginal", "fit", "need", "role"] },
-        { "point": "Considers reliability or breakdown risk", "points": 1, "keywords": ["reliable", "reliability", "breakdown", "repair"] },
-        { "point": "Considers defense, matchup, traffic, or foul risk", "points": 1, "keywords": ["defense", "matchup", "traffic", "foul"] }
+        {
+          "point": "Compares marginal value instead of raw scoring only",
+          "points": 1,
+          "keywords": [
+            "marginal",
+            "fit",
+            "need",
+            "role"
+          ]
+        },
+        {
+          "point": "Considers reliability or breakdown risk",
+          "points": 1,
+          "keywords": [
+            "reliable",
+            "reliability",
+            "breakdown",
+            "repair"
+          ]
+        },
+        {
+          "point": "Considers defense, matchup, traffic, or foul risk",
+          "points": 1,
+          "keywords": [
+            "defense",
+            "matchup",
+            "traffic",
+            "foul"
+          ]
+        }
       ],
-      "tags": ["alliance-selection", "playoffs", "strategy"],
+      "tags": [
+        "alliance-selection",
+        "playoffs",
+        "strategy"
+      ],
       "sourceNote": "Generic alliance-selection scenario. Verify season-specific constraints before canonical use.",
       "publicExplanation": "Tests playoff reasoning and role complementarity."
     },
     {
+      "verificationStatus": "unverified",
       "id": "2020-design-001",
       "season": 2020,
       "gameName": "INFINITE RECHARGE",
@@ -65,14 +154,39 @@
       "prompt": "A team can either improve shooter accuracy or add a complex endgame mechanism, but build time is limited. What tradeoff should they analyze before choosing?",
       "expectedAnswer": "They should estimate point impact, reliability, driver practice needs, integration risk, schedule risk, and how each feature affects alliance value.",
       "rubric": [
-        { "point": "Mentions expected point or match impact", "points": 1, "keywords": ["point", "points", "impact", "value"] },
-        { "point": "Mentions reliability, integration, practice, or schedule risk", "points": 1, "keywords": ["reliable", "reliability", "practice", "integration", "schedule", "risk"] }
+        {
+          "point": "Mentions expected point or match impact",
+          "points": 1,
+          "keywords": [
+            "point",
+            "points",
+            "impact",
+            "value"
+          ]
+        },
+        {
+          "point": "Mentions reliability, integration, practice, or schedule risk",
+          "points": 1,
+          "keywords": [
+            "reliable",
+            "reliability",
+            "practice",
+            "integration",
+            "schedule",
+            "risk"
+          ]
+        }
       ],
-      "tags": ["design", "tradeoffs", "build-season"],
+      "tags": [
+        "design",
+        "tradeoffs",
+        "build-season"
+      ],
       "sourceNote": "Generic design tradeoff prompt. Not a verified statement of season rules.",
       "publicExplanation": "Tests whether a model can discuss engineering tradeoffs under schedule pressure."
     },
     {
+      "verificationStatus": "unverified",
       "id": "2019-match-001",
       "season": 2019,
       "gameName": "DESTINATION: DEEP SPACE",
@@ -82,15 +196,46 @@
       "prompt": "After a loss, match notes say the alliance had strong scoring bursts but long dead periods caused by traffic and missed handoffs. What should the drive team review before the next match?",
       "expectedAnswer": "Review path planning, role assignment, communication, congestion points, cycle timing, fallback plans, and whether defensive pressure caused the dead periods.",
       "rubric": [
-        { "point": "Identifies traffic/pathing or congestion review", "points": 1, "keywords": ["traffic", "path", "pathing", "congestion"] },
-        { "point": "Mentions communication, handoffs, or role clarity", "points": 1, "keywords": ["communication", "handoff", "role"] },
-        { "point": "Mentions cycle timing, fallback plans, or defensive pressure", "points": 1, "keywords": ["cycle", "fallback", "defense", "defensive"] }
+        {
+          "point": "Identifies traffic/pathing or congestion review",
+          "points": 1,
+          "keywords": [
+            "traffic",
+            "path",
+            "pathing",
+            "congestion"
+          ]
+        },
+        {
+          "point": "Mentions communication, handoffs, or role clarity",
+          "points": 1,
+          "keywords": [
+            "communication",
+            "handoff",
+            "role"
+          ]
+        },
+        {
+          "point": "Mentions cycle timing, fallback plans, or defensive pressure",
+          "points": 1,
+          "keywords": [
+            "cycle",
+            "fallback",
+            "defense",
+            "defensive"
+          ]
+        }
       ],
-      "tags": ["match-analysis", "drive-team", "strategy"],
+      "tags": [
+        "match-analysis",
+        "drive-team",
+        "strategy"
+      ],
       "sourceNote": "Generic match-analysis prompt. Verify season-specific field terms before canonical use.",
       "publicExplanation": "Tests diagnosis of match flow rather than scoreboard-only analysis."
     },
     {
+      "verificationStatus": "unverified",
       "id": "2018-rp-001",
       "season": 2018,
       "gameName": "POWER UP",
@@ -105,12 +250,25 @@
         "C. Because fouls are ignored when a ranking point is earned",
         "D. Because alliance selection is based only on autonomous scoring"
       ],
-      "rubric": [{ "point": "Selects B", "points": 1, "keywords": ["B"] }],
-      "tags": ["ranking-points", "qualification", "strategy"],
+      "rubric": [
+        {
+          "point": "Selects B",
+          "points": 1,
+          "keywords": [
+            "B"
+          ]
+        }
+      ],
+      "tags": [
+        "ranking-points",
+        "qualification",
+        "strategy"
+      ],
       "sourceNote": "Generic ranking-point concept prompt. Verify exact season RP rules before canonical use.",
       "publicExplanation": "Checks basic understanding that qualification objectives can change strategic priorities."
     },
     {
+      "verificationStatus": "unverified",
       "id": "2017-rules-001",
       "season": 2017,
       "gameName": "STEAMWORKS",
@@ -125,12 +283,25 @@
         "C. State uncertainty and ask to verify the official manual or event-specific updates",
         "D. Ignore the rule question and discuss robot design instead"
       ],
-      "rubric": [{ "point": "Selects C", "points": 1, "keywords": ["C"] }],
-      "tags": ["rules", "verification", "safety"],
+      "rubric": [
+        {
+          "point": "Selects C",
+          "points": 1,
+          "keywords": [
+            "C"
+          ]
+        }
+      ],
+      "tags": [
+        "rules",
+        "verification",
+        "safety"
+      ],
       "sourceNote": "Meta rules-interpretation prompt, not an official rule statement.",
       "publicExplanation": "Tests whether the model avoids hallucinating official rules."
     },
     {
+      "verificationStatus": "unverified",
       "id": "2016-historical-001",
       "season": 2016,
       "gameName": "FIRST STRONGHOLD",
@@ -140,14 +311,38 @@
       "prompt": "When discussing an older FRC season, why should a benchmark distinguish between official rules and community meta observations?",
       "expectedAnswer": "Official rules are authoritative and require citations, while community meta can vary by region, event level, robot resources, and retrospective analysis.",
       "rubric": [
-        { "point": "Distinguishes authoritative rules from observed meta", "points": 1, "keywords": ["official", "rules", "meta", "authoritative"] },
-        { "point": "Mentions regional, event-level, resource, or retrospective variation", "points": 1, "keywords": ["region", "event", "resources", "retrospective", "varies"] }
+        {
+          "point": "Distinguishes authoritative rules from observed meta",
+          "points": 1,
+          "keywords": [
+            "official",
+            "rules",
+            "meta",
+            "authoritative"
+          ]
+        },
+        {
+          "point": "Mentions regional, event-level, resource, or retrospective variation",
+          "points": 1,
+          "keywords": [
+            "region",
+            "event",
+            "resources",
+            "retrospective",
+            "varies"
+          ]
+        }
       ],
-      "tags": ["historical-meta", "sources", "benchmark-design"],
+      "tags": [
+        "historical-meta",
+        "sources",
+        "benchmark-design"
+      ],
       "sourceNote": "Generic benchmark methodology prompt.",
       "publicExplanation": "Checks source awareness for historical FRC analysis."
     },
     {
+      "verificationStatus": "unverified",
       "id": "2024-json-001",
       "season": 2024,
       "gameName": "CRESCENDO",
@@ -157,15 +352,45 @@
       "prompt": "Return JSON with keys \"role\", \"strengths\", \"risks\", and \"dataToVerify\" for a robot that is fast in teleop, has inconsistent autonomous output, and rarely commits fouls.",
       "expectedAnswer": "{\"role\":\"scoring/cycling candidate\",\"strengths\":[\"teleop speed\",\"low foul risk\"],\"risks\":[\"inconsistent autonomous\"],\"dataToVerify\":[\"cycle time\",\"scoring accuracy\",\"auto success rate\",\"defense resistance\"]}",
       "rubric": [
-        { "point": "Provides requested keys", "points": 1, "keywords": ["role", "strengths", "risks", "dataToVerify"] },
-        { "point": "Captures teleop speed and low foul risk as strengths", "points": 1, "keywords": ["teleop", "speed", "foul"] },
-        { "point": "Captures autonomous inconsistency as a risk", "points": 1, "keywords": ["auto", "autonomous", "inconsistent"] }
+        {
+          "point": "Provides requested keys",
+          "points": 1,
+          "keywords": [
+            "role",
+            "strengths",
+            "risks",
+            "dataToVerify"
+          ]
+        },
+        {
+          "point": "Captures teleop speed and low foul risk as strengths",
+          "points": 1,
+          "keywords": [
+            "teleop",
+            "speed",
+            "foul"
+          ]
+        },
+        {
+          "point": "Captures autonomous inconsistency as a risk",
+          "points": 1,
+          "keywords": [
+            "auto",
+            "autonomous",
+            "inconsistent"
+          ]
+        }
       ],
-      "tags": ["json", "scouting", "structured-output"],
+      "tags": [
+        "json",
+        "scouting",
+        "structured-output"
+      ],
       "sourceNote": "Generic structured-output prompt. Verify season details before canonical use.",
       "publicExplanation": "Tests structured response following plus scouting reasoning."
     },
     {
+      "verificationStatus": "unverified",
       "id": "2023-rp-001",
       "season": 2023,
       "gameName": "CHARGED UP",
@@ -175,15 +400,47 @@
       "prompt": "A qualification alliance can chase a ranking objective or play a simpler strategy that likely secures the win. What factors should the strategist weigh?",
       "expectedAnswer": "They should weigh probability of winning, probability of earning the ranking objective, current event ranking needs, alliance capabilities, opponent strength, execution risk, and time remaining.",
       "rubric": [
-        { "point": "Considers win probability versus ranking objective probability", "points": 1, "keywords": ["win", "ranking", "probability", "chance"] },
-        { "point": "Considers alliance/opponent capabilities", "points": 1, "keywords": ["alliance", "opponent", "capabilities", "strength"] },
-        { "point": "Considers execution risk, ranking context, or time remaining", "points": 1, "keywords": ["risk", "rank", "time", "remaining"] }
+        {
+          "point": "Considers win probability versus ranking objective probability",
+          "points": 1,
+          "keywords": [
+            "win",
+            "ranking",
+            "probability",
+            "chance"
+          ]
+        },
+        {
+          "point": "Considers alliance/opponent capabilities",
+          "points": 1,
+          "keywords": [
+            "alliance",
+            "opponent",
+            "capabilities",
+            "strength"
+          ]
+        },
+        {
+          "point": "Considers execution risk, ranking context, or time remaining",
+          "points": 1,
+          "keywords": [
+            "risk",
+            "rank",
+            "time",
+            "remaining"
+          ]
+        }
       ],
-      "tags": ["ranking-points", "qualification", "risk"],
+      "tags": [
+        "ranking-points",
+        "qualification",
+        "risk"
+      ],
       "sourceNote": "Generic ranking strategy prompt. Verify exact official RP language before canonical use.",
       "publicExplanation": "Tests strategic tradeoff reasoning in qualification play."
     },
     {
+      "verificationStatus": "unverified",
       "id": "2022-rules-001",
       "season": 2022,
       "gameName": "RAPID REACT",
@@ -193,15 +450,44 @@
       "prompt": "Explain how you would answer a detailed question about a 2022 rule if you do not have the official manual in context.",
       "expectedAnswer": "State that the exact rule must be checked against the official manual, avoid fabricating rule numbers, explain the likely decision process at a high level, and ask for the relevant excerpt if needed.",
       "rubric": [
-        { "point": "Says to verify against the official manual", "points": 1, "keywords": ["manual", "verify", "official"] },
-        { "point": "Avoids fabricating rule numbers or exact claims", "points": 1, "keywords": ["fabricate", "rule number", "exact"] },
-        { "point": "Can provide high-level reasoning while noting uncertainty", "points": 1, "keywords": ["high-level", "uncertain", "context"] }
+        {
+          "point": "Says to verify against the official manual",
+          "points": 1,
+          "keywords": [
+            "manual",
+            "verify",
+            "official"
+          ]
+        },
+        {
+          "point": "Avoids fabricating rule numbers or exact claims",
+          "points": 1,
+          "keywords": [
+            "fabricate",
+            "rule number",
+            "exact"
+          ]
+        },
+        {
+          "point": "Can provide high-level reasoning while noting uncertainty",
+          "points": 1,
+          "keywords": [
+            "high-level",
+            "uncertain",
+            "context"
+          ]
+        }
       ],
-      "tags": ["rules", "manual-review", "source-awareness"],
+      "tags": [
+        "rules",
+        "manual-review",
+        "source-awareness"
+      ],
       "sourceNote": "Manual-review safety prompt. Not an official rule statement.",
       "publicExplanation": "Designed for human review of source discipline."
     },
     {
+      "verificationStatus": "unverified",
       "id": "2015-design-001",
       "season": 2015,
       "gameName": "RECYCLE RUSH",
@@ -211,11 +497,42 @@
       "prompt": "A team is deciding between a narrow specialized mechanism and a broader but less optimized mechanism for a season with unusual game-piece handling. What benchmark-worthy factors should an answer include?",
       "expectedAnswer": "A good answer should discuss strategic value, reliability, cycle time, driver practice, compatibility with partners, maintenance complexity, and how the mechanism performs under event variability.",
       "rubric": [
-        { "point": "Discusses strategic value and specialization tradeoff", "points": 1, "keywords": ["strategy", "strategic", "specialized", "tradeoff"] },
-        { "point": "Discusses reliability, cycle time, or maintenance complexity", "points": 1, "keywords": ["reliable", "reliability", "cycle", "maintenance"] },
-        { "point": "Discusses partner compatibility, practice, or event variability", "points": 1, "keywords": ["partner", "practice", "variability", "event"] }
+        {
+          "point": "Discusses strategic value and specialization tradeoff",
+          "points": 1,
+          "keywords": [
+            "strategy",
+            "strategic",
+            "specialized",
+            "tradeoff"
+          ]
+        },
+        {
+          "point": "Discusses reliability, cycle time, or maintenance complexity",
+          "points": 1,
+          "keywords": [
+            "reliable",
+            "reliability",
+            "cycle",
+            "maintenance"
+          ]
+        },
+        {
+          "point": "Discusses partner compatibility, practice, or event variability",
+          "points": 1,
+          "keywords": [
+            "partner",
+            "practice",
+            "variability",
+            "event"
+          ]
+        }
       ],
-      "tags": ["design", "historical-meta", "tradeoffs"],
+      "tags": [
+        "design",
+        "historical-meta",
+        "tradeoffs"
+      ],
       "sourceNote": "Generic historical design prompt. Verify exact season context before canonical use.",
       "publicExplanation": "Tests whether models reason about design strategy beyond raw mechanism capability."
     }

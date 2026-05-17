@@ -1,4 +1,4 @@
-import type { BenchmarkResult, ScoreBreakdown } from '../types/benchmark';
+import type { BenchmarkPack, BenchmarkResult, ScoreBreakdown } from '../types/benchmark';
 
 export interface ExportPayload {
   app: 'FRCBench';
@@ -12,12 +12,19 @@ export function downloadJson(filename: string, payload: ExportPayload) {
   downloadFile(filename, JSON.stringify(payload, null, 2), 'application/json');
 }
 
+export function downloadBenchmarkPack(filename: string, pack: BenchmarkPack) {
+  downloadFile(filename, JSON.stringify(pack, null, 2), 'application/json');
+}
+
 export function downloadCsv(filename: string, results: BenchmarkResult[]) {
   const headers = [
     'questionId',
+    'gameName',
     'season',
     'category',
     'difficulty',
+    'scoringType',
+    'verificationStatus',
     'modelName',
     'score',
     'maxScore',
@@ -26,11 +33,18 @@ export function downloadCsv(filename: string, results: BenchmarkResult[]) {
     'prompt',
     'expectedAnswer',
     'modelAnswer',
+    'tags',
+    'sourceNote',
     'notes',
   ];
 
   const rows = results.map((result) =>
-    headers.map((header) => escapeCsv(String(result[header as keyof BenchmarkResult] ?? ''))).join(','),
+    headers
+      .map((header) => {
+        const value = result[header as keyof BenchmarkResult];
+        return escapeCsv(Array.isArray(value) ? value.join('|') : String(value ?? ''));
+      })
+      .join(','),
   );
 
   downloadFile(filename, [headers.join(','), ...rows].join('\n'), 'text/csv');

@@ -1,28 +1,62 @@
 # FRCBench
 
-FRCBench is a fully open-source browser app for benchmarking LLMs on FIRST Robotics Competition game knowledge, strategy reasoning, season-specific metas, alliance selection, rule interpretation, scouting interpretation, and match analysis.
+FRCBench is a fully open-source browser app for benchmarking LLMs on FIRST Robotics Competition knowledge and reasoning: game strategy, season-specific metas, alliance selection, rule interpretation, scouting interpretation, robot tradeoffs, ranking-point decisions, and match analysis.
 
 The v1 app is intentionally backend-free. Users bring their own API keys, and calls go directly from their browser to the OpenAI-compatible endpoint they configure.
+
+## Screenshots
+
+Screenshots will be added as the UI stabilizes.
+
+- Home page: `docs/screenshots/home.png`
+- Runner and pack import: `docs/screenshots/runner.png`
+- Results modal: `docs/screenshots/results-modal.png`
+
+## Benchmark Philosophy
+
+FRCBench should feel useful to FRC people, not only to benchmark hobbyists. The goal is to test whether a model can reason about FRC the way drive coaches, scouts, strategy mentors, and students actually talk:
+
+- distinguish official rules from community meta
+- avoid unsupported rule claims and fake citations
+- reason about alliance role fit instead of raw stats only
+- explain tradeoffs around reliability, ceiling, schedule, traffic, fouls, and partner compatibility
+- handle season context without pretending every local event followed the same meta
+- make outputs auditable through transparent prompts, expected answers, rubrics, source notes, and exports
 
 ## Features
 
 - Vite + React + TypeScript + Tailwind CSS
-- Netlify deployable static app
+- Netlify-deployable static app
 - Generic OpenAI-compatible `/chat/completions` adapter
 - Demo mode with fake responses for UI testing
 - Model config for base URL, API key, model, temperature, and max tokens
-- Versioned JSON benchmark dataset in `src/benchmarks`
+- Client-side benchmark pack JSON import/export with validation
+- Versioned sample benchmark pack in `src/benchmarks`
+- Contribution template in `benchmark-packs`
 - Category and season filtering
 - Progress bar and stop/cancel button
 - Score summary by category, season, and difficulty
-- Expandable results table with manual score adjustment
+- Result details modal with prompt, answer, expected answer, rubric, tags, verification status, and sources
+- Manual score adjustment
 - JSON and CSV result export
 
-## Privacy and API Keys
+## Privacy and BYO API Keys
 
-FRCBench runs in your browser. Your API key is stored locally if you choose to save it. Benchmark prompts and responses are not uploaded to an FRCBench server in v1.
+FRCBench runs in your browser. Your API key is stored locally only if you choose to save it. Benchmark prompts and responses are not uploaded to an FRCBench server in v1.
 
 Browser-based API calls expose keys to your own browser session and the configured provider endpoint. Use restricted or temporary keys when possible. Do not commit real API keys.
+
+FRCBench does not include analytics, a paid backend, or server-side key storage.
+
+## CORS Warning
+
+The OpenAI-compatible adapter calls:
+
+```text
+{baseUrl}/chat/completions
+```
+
+from the browser with standard OpenAI chat messages. Some providers and local model servers block browser requests with CORS. If a request fails even with a valid API key, check whether the provider allows browser clients or whether your local server needs CORS enabled.
 
 ## Run Locally
 
@@ -49,7 +83,7 @@ This repo includes `netlify.toml`.
 
 You can deploy through the Netlify UI, Netlify CLI, or by connecting a Git repository.
 
-## Benchmark JSON
+## Benchmark Packs
 
 The starter pack lives at:
 
@@ -57,7 +91,21 @@ The starter pack lives at:
 src/benchmarks/sample-v0.1.0.json
 ```
 
-Each task supports:
+Contributor templates live at:
+
+```text
+benchmark-packs/template-pack.json
+benchmark-packs/README.md
+```
+
+Each pack needs:
+
+- `id`
+- `name`
+- `version`
+- `tasks`
+
+Each task needs:
 
 - `id`
 - `season`
@@ -67,21 +115,30 @@ Each task supports:
 - `prompt`
 - `expectedAnswer`
 - `scoringType`
-- `rubric`
 - `tags`
+
+Optional task fields include:
+
+- `rubric`
+- `choices`
 - `sourceNote`
 - `publicExplanation`
-- optional `choices`
+- `verificationStatus`
+- `sources`
 
-The sample pack uses generic prompts where official FRC details would need verification. Before treating rule-specific tasks as canonical, add official source citations and verify against the season manual, team updates, and event rules.
+The app validates imported packs before loading them and rejects duplicate task ids, missing pack fields, malformed tasks, missing multiple-choice choices, and missing rubric arrays for rubric/manual tasks.
 
-## Add New Questions
+## Contributing Benchmark Packs
 
-1. Add a new versioned JSON file in `src/benchmarks`.
-2. Follow the `BenchmarkTask` shape in `src/types/benchmark.ts`.
-3. Keep rule claims source-aware. Use `sourceNote` to identify whether the prompt is verified, generic, or awaiting citation.
-4. Add rubric keywords for auto-scored short-answer tasks.
-5. Update `src/data/sampleBenchmarks.ts` when switching the active pack.
+1. Copy `benchmark-packs/template-pack.json`.
+2. Add tasks with stable, unique ids.
+3. Use `verificationStatus` honestly: `unverified`, `community_reviewed`, or `source_verified`.
+4. Add `sources` for official manuals, team updates, TBA, Statbotics, Chief Delphi discussions, team strategy resources, or public scouting/strategy materials.
+5. Do not cite community discussion as an official rule source.
+6. Avoid unsupported claims, fake rule numbers, and overgeneralizing one event's meta.
+7. Import the pack in the app and fix validation errors before opening a PR.
+
+See `benchmark-packs/README.md` for detailed writing guidance.
 
 ## Scoring in v1
 
@@ -89,41 +146,21 @@ The sample pack uses generic prompts where official FRC details would need verif
 - Short answer: keyword/rubric matching.
 - JSON structured response: keyword/rubric matching plus valid JSON parse credit.
 - Rubric/manual answers: stored for human review and editable in the results table.
-- Judge-model rubric grading is intentionally stubbed for a future version.
-
-## API Compatibility
-
-The first adapter calls:
-
-```text
-{baseUrl}/chat/completions
-```
-
-with standard OpenAI chat messages. OpenAI-style providers, OpenRouter-style gateways, and local compatible servers may work if they support browser CORS and the OpenAI chat-completions shape.
-
-## Contributing
-
-FRCBench is meant to be community maintained.
-
-- Keep datasets transparent and versioned.
-- Prefer small, reviewable PRs.
-- Cite official sources for rule-specific benchmark items.
-- Mark uncertain prompts clearly with `sourceNote`.
-- Avoid adding analytics or server-side key storage.
-- Keep benchmark logic modular so local model runners and future adapters can be added cleanly.
+- Judge-model rubric grading is intentionally not automatic yet because model judges can be biased, reward verbosity, and share blind spots with the tested model.
 
 ## License
 
-MIT is recommended for the app code. Benchmark datasets may eventually need a separate contribution policy and provenance metadata.
+The app code is MIT licensed. Benchmark datasets may eventually need additional provenance and contribution metadata as community packs mature.
 
 ## Roadmap
 
 - Hidden/private benchmark mode
-- Community submitted tasks
-- Judge-model rubric grading
-- Local model runner support
+- Community submitted task review flow
+- Judge-model rubric grading with calibration sets
+- Better local model runner support
 - Leaderboard with signed result files
-- Benchmark versioning
-- Official source citations for rules
+- Pack versioning and compatibility metadata
+- Official source citations for rule-specific tasks
 - Per-season packs
 - Anti-cheat mode
+- Screenshot and demo deployment docs

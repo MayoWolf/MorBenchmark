@@ -19,6 +19,16 @@ export type ScoringType =
 
 export type StoragePreference = 'none' | 'session' | 'local';
 
+export type VerificationStatus = 'unverified' | 'community_reviewed' | 'source_verified';
+
+export interface BenchmarkSource {
+  title: string;
+  url: string;
+  publisher: string;
+  year: number;
+  note: string;
+}
+
 export interface RubricItem {
   point: string;
   points: number;
@@ -36,9 +46,19 @@ export interface BenchmarkTask {
   scoringType: ScoringType;
   rubric: RubricItem[];
   tags: string[];
-  sourceNote: string;
-  publicExplanation: string;
+  sourceNote?: string;
+  publicExplanation?: string;
+  sources?: BenchmarkSource[];
+  verificationStatus?: VerificationStatus;
   choices?: string[];
+}
+
+export interface BenchmarkPack {
+  id: string;
+  name: string;
+  version: string;
+  description?: string;
+  tasks: BenchmarkTask[];
 }
 
 export interface ModelProviderConfig {
@@ -60,6 +80,7 @@ export interface BenchmarkRunConfig {
 
 export interface BenchmarkResult {
   questionId: string;
+  gameName?: string;
   prompt: string;
   modelAnswer: string;
   expectedAnswer: string;
@@ -72,6 +93,12 @@ export interface BenchmarkResult {
   modelName: string;
   timestamp: string;
   scoringType: ScoringType;
+  rubric?: RubricItem[];
+  tags?: string[];
+  sourceNote?: string;
+  publicExplanation?: string;
+  sources?: BenchmarkSource[];
+  verificationStatus?: VerificationStatus;
   notes?: string;
 }
 

@@ -1,41 +1,46 @@
 import { Loader2, Square, Timer, Trophy } from 'lucide-react';
-import { useMemo, useRef, useState } from 'react';
-import { benchmarkVersion, sampleBenchmarks } from '../data/sampleBenchmarks';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { getDemoModelResponse } from '../lib/demoResponses';
 import { callOpenAICompatibleChat } from '../lib/modelAdapters/openAICompatible';
 import { scoreAnswer } from '../lib/scoring';
 import type {
   BenchmarkCategory,
+  BenchmarkPack,
   BenchmarkResult,
   BenchmarkRunConfig,
   BenchmarkTask,
   ModelProviderConfig,
 } from '../types/benchmark';
+import { BenchmarkPackManager } from './BenchmarkPackManager';
 import { ModelConfig } from './ModelConfig';
 import { TaskBrowser } from './TaskBrowser';
 
 interface BenchmarkRunnerProps {
   config: ModelProviderConfig;
   demoMode: boolean;
+  benchmarkPack: BenchmarkPack;
   onConfigChange: (config: ModelProviderConfig) => void;
   onDemoModeChange: (enabled: boolean) => void;
+  onBenchmarkPackChange: (pack: BenchmarkPack) => void;
   onResults: (results: BenchmarkResult[]) => void;
 }
 
 export function BenchmarkRunner({
   config,
   demoMode,
+  benchmarkPack,
   onConfigChange,
   onDemoModeChange,
+  onBenchmarkPackChange,
   onResults,
 }: BenchmarkRunnerProps) {
   const categories = useMemo(
-    () => Array.from(new Set(sampleBenchmarks.map((task) => task.category))).sort() as BenchmarkCategory[],
-    [],
+    () => Array.from(new Set(benchmarkPack.tasks.map((task) => task.category))).sort() as BenchmarkCategory[],
+    [benchmarkPack],
   );
   const seasons = useMemo(
-    () => Array.from(new Set(sampleBenchmarks.map((task) => task.season))).sort((a, b) => b - a),
-    [],
+    () => Array.from(new Set(benchmarkPack.tasks.map((task) => task.season))).sort((a, b) => b - a),
+    [benchmarkPack],
   );
   const [selectedCategories, setSelectedCategories] = useState<BenchmarkCategory[]>(categories);
   const [selectedSeasons, setSelectedSeasons] = useState<number[]>(seasons);
@@ -45,7 +50,16 @@ export function BenchmarkRunner({
   const [runResults, setRunResults] = useState<BenchmarkResult[]>([]);
   const abortRef = useRef<AbortController | null>(null);
 
-  const selectedTasks = sampleBenchmarks.filter(
+  useEffect(() => {
+    setSelectedCategories(categories);
+    setSelectedSeasons(seasons);
+    setRunResults([]);
+    onResults([]);
+    setProgress(0);
+    setStatusMessage(`Ready to run ${benchmarkPack.version}`);
+  }, [benchmarkPack, categories, seasons, onResults]);
+
+  const selectedTasks = benchmarkPack.tasks.filter(
     (task) => selectedCategories.includes(task.category) && selectedSeasons.includes(task.season),
   );
 
@@ -73,7 +87,7 @@ export function BenchmarkRunner({
     setProgress(0);
     setRunResults([]);
     onResults([]);
-    setStatusMessage(`Running ${selectedTasks.length} tasks from ${benchmarkVersion}...`);
+    setStatusMessage(`Running ${selectedTasks.length} tasks from ${benchmarkPack.version}...`);
 
     const nextResults: BenchmarkResult[] = [];
 
@@ -106,6 +120,7 @@ export function BenchmarkRunner({
         const scored = scoreAnswer(task, modelResponse.content);
         const result: BenchmarkResult = {
           questionId: task.id,
+          gameName: task.gameName,
           prompt: formatTaskPrompt(task),
           modelAnswer: modelResponse.content,
           expectedAnswer: task.expectedAnswer,
@@ -118,6 +133,12 @@ export function BenchmarkRunner({
           modelName: demoMode ? 'frcbench-demo-model' : config.modelName,
           timestamp: new Date().toISOString(),
           scoringType: task.scoringType,
+          rubric: task.rubric,
+          tags: task.tags,
+          sourceNote: task.sourceNote,
+          publicExplanation: task.publicExplanation,
+          sources: task.sources,
+          verificationStatus: task.verificationStatus ?? 'unverified',
           notes: scored.notes,
         };
 
@@ -158,8 +179,10 @@ export function BenchmarkRunner({
         onDemoModeChange={onDemoModeChange}
       />
 
+      <BenchmarkPackManager pack={benchmarkPack} onPackChange={onBenchmarkPackChange} />
+
       <TaskBrowser
-        tasks={sampleBenchmarks}
+        tasks={benchmarkPack.tasks}
         selectedCategories={selectedCategories}
         selectedSeasons={selectedSeasons}
         onSelectedCategoriesChange={setSelectedCategories}
@@ -216,6 +239,7 @@ function buildErrorResult(task: BenchmarkTask, error: unknown, modelName: string
   const message = error instanceof Error ? error.message : 'Unknown run error.';
   return {
     questionId: task.id,
+    gameName: task.gameName,
     prompt: formatTaskPrompt(task),
     modelAnswer: `ERROR: ${message}`,
     expectedAnswer: task.expectedAnswer,
@@ -228,6 +252,12 @@ function buildErrorResult(task: BenchmarkTask, error: unknown, modelName: string
     modelName,
     timestamp: new Date().toISOString(),
     scoringType: task.scoringType,
+    rubric: task.rubric,
+    tags: task.tags,
+    sourceNote: task.sourceNote,
+    publicExplanation: task.publicExplanation,
+    sources: task.sources,
+    verificationStatus: task.verificationStatus ?? 'unverified',
     notes: 'Request failed. Check API key, CORS, rate limits, base URL, or endpoint compatibility.',
   };
 }

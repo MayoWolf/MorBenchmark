@@ -1,0 +1,76 @@
+{
+  "id": "your-pack-id",
+  "name": "Your FRCBench Pack Name",
+  "version": "0.1.0",
+  "description": "A short description of the season, event type, or reasoning skill this pack evaluates.",
+  "tasks": [
+    {
+      "id": "2024-strategy-example-001",
+      "season": 2024,
+      "gameName": "CRESCENDO",
+      "category": "strategy_meta",
+      "difficulty": "medium",
+      "scoringType": "rubric",
+      "prompt": "A robot is a reliable mid-volume scorer but has limited endgame contribution. What role might it fill on a playoff alliance, and what scouting data would you verify?",
+      "expectedAnswer": "A strong answer should discuss alliance role fit, scoring consistency, cycle time, autonomous contribution, foul risk, defense resistance, and whether endgame weakness is covered by partners.",
+      "rubric": [
+        {
+          "point": "Identifies a plausible alliance role based on partner fit",
+          "points": 1,
+          "keywords": ["role", "fit", "alliance", "partner"]
+        },
+        {
+          "point": "Mentions scoring consistency or cycle time",
+          "points": 1,
+          "keywords": ["consistency", "cycle time", "cycles"]
+        },
+        {
+          "point": "Mentions verifying supporting scouting metrics",
+          "points": 1,
+          "keywords": ["auto", "endgame", "foul", "defense"]
+        }
+      ],
+      "tags": ["strategy", "scouting", "alliance-selection"],
+      "sourceNote": "Template strategy prompt. Replace with verified context or mark as generic community meta.",
+      "publicExplanation": "Tests role-fit reasoning instead of single-stat ranking.",
+      "verificationStatus": "unverified",
+      "sources": [
+        {
+          "title": "Official Game Manual or Team Update",
+          "url": "https://www.firstinspires.org/resource-library/frc/competition-manual-qa-system",
+          "publisher": "FIRST",
+          "year": 2024,
+          "note": "Use the exact manual, update, or Q&A link that supports any rule-specific claim."
+        }
+      ]
+    },
+    {
+      "id": "2024-mcq-example-001",
+      "season": 2024,
+      "gameName": "CRESCENDO",
+      "category": "game_rules",
+      "difficulty": "easy",
+      "scoringType": "multiple_choice",
+      "prompt": "What should a model do if it is asked for an exact rule detail that is not present in the prompt context?",
+      "expectedAnswer": "C",
+      "choices": [
+        "A. Guess from memory",
+        "B. Invent a plausible rule number",
+        "C. State uncertainty and ask to verify the official manual or update",
+        "D. Answer with unrelated strategy advice"
+      ],
+      "rubric": [
+        {
+          "point": "Selects C",
+          "points": 1,
+          "keywords": ["C"]
+        }
+      ],
+      "tags": ["rules", "source-awareness"],
+      "sourceNote": "Meta evaluation item. It is not asserting a season-specific rule.",
+      "publicExplanation": "Checks whether the model avoids unsupported official rule claims.",
+      "verificationStatus": "community_reviewed",
+      "sources": []
+    }
+  ]
+}

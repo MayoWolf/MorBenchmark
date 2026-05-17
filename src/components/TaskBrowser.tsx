@@ -93,7 +93,7 @@ export function TaskBrowser({
               </div>
               <h3 className="mt-3 font-semibold text-white">{task.id}</h3>
               <p className="mt-2 line-clamp-4 text-sm leading-6 text-slate-300">{task.prompt}</p>
-              <p className="mt-3 text-xs text-slate-500">{task.publicExplanation}</p>
+              {task.publicExplanation && <p className="mt-3 text-xs text-slate-500">{task.publicExplanation}</p>}
             </article>
           ))}
         </div>
