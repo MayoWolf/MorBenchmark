@@ -7,7 +7,7 @@ export async function getDemoModelResponse(task: BenchmarkTask): Promise<ModelRe
   const content =
     task.scoringType === 'multiple_choice'
       ? task.expectedAnswer
-      : task.scoringType === 'json_structured'
+      : task.scoringType === 'json_structured' || task.scoringType === 'structured_json'
         ? '{"role":"scoring/cycling candidate","strengths":["teleop speed","low foul risk"],"risks":["inconsistent autonomous"],"dataToVerify":["cycle time","auto success rate","scoring accuracy"]}'
         : [
             'Demo response:',

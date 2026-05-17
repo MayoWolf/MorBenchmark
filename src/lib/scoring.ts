@@ -20,7 +20,7 @@ export function getMaxScore(task: BenchmarkTask): number {
   }
 
   const rubricTotal = task.rubric.reduce((total, item) => total + item.points, 0);
-  if (task.scoringType === 'json_structured') {
+  if (task.scoringType === 'json_structured' || task.scoringType === 'structured_json') {
     return rubricTotal + 1;
   }
 
@@ -60,7 +60,7 @@ export function scoreAnswer(task: BenchmarkTask, answer: string): Pick<Benchmark
     }
   });
 
-  if (task.scoringType === 'json_structured') {
+  if (task.scoringType === 'json_structured' || task.scoringType === 'structured_json') {
     try {
       JSON.parse(answer);
       score = Math.min(maxScore, score + 1);

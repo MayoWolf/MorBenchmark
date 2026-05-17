@@ -28,8 +28,10 @@ const difficulties: BenchmarkDifficulty[] = ['easy', 'medium', 'hard'];
 const scoringTypes: ScoringType[] = [
   'multiple_choice',
   'short_answer',
+  'keyword',
   'rubric',
   'json_structured',
+  'structured_json',
   'manual',
 ];
 

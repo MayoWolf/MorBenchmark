@@ -13,8 +13,10 @@ export type BenchmarkDifficulty = 'easy' | 'medium' | 'hard';
 export type ScoringType =
   | 'multiple_choice'
   | 'short_answer'
+  | 'keyword'
   | 'rubric'
   | 'json_structured'
+  | 'structured_json'
   | 'manual';
 
 export type StoragePreference = 'none' | 'session' | 'local';
