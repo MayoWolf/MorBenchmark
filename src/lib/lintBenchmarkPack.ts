@@ -131,12 +131,6 @@ function lintTask(task: unknown, index: number, seenIds: Set<string>, issues: Be
     }
   }
 
-  if (!isNonEmptyString(task.expectedAnswer)) {
-    issues.push(error(taskId, 'expectedAnswer is required and cannot be empty.'));
-  } else if (task.expectedAnswer.trim().length < 10) {
-    issues.push(warning(taskId, 'expectedAnswer is shorter than 10 characters.'));
-  }
-
   if (!Array.isArray(task.tags) || !task.tags.every((tag) => typeof tag === 'string')) {
     issues.push(error(taskId, 'tags must be an array of strings.'));
   } else if (task.tags.length === 0) {
@@ -162,6 +156,12 @@ function lintTask(task: unknown, index: number, seenIds: Set<string>, issues: Be
     issues.push(error(taskId, 'scoringType is required.'));
   } else if (!scoringTypes.includes(scoringType as ScoringType)) {
     issues.push(error(taskId, `Invalid scoringType "${scoringType}".`));
+  }
+
+  if (!isNonEmptyString(task.expectedAnswer)) {
+    issues.push(error(taskId, 'expectedAnswer is required and cannot be empty.'));
+  } else if (task.expectedAnswer.trim().length < 10 && scoringType !== 'multiple_choice') {
+    issues.push(warning(taskId, 'expectedAnswer is shorter than 10 characters.'));
   }
 
   const verificationStatus = isNonEmptyString(task.verificationStatus)
