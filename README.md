@@ -170,6 +170,28 @@ To move a task to `source_verified`, add at least one acceptable source and make
 - Rubric/manual answers: stored for human review and editable in the results table.
 - Judge-model rubric grading is intentionally not automatic yet because model judges can be biased, reward verbosity, and share blind spots with the tested model.
 
+## Signed Result Exports
+
+FRCBench can create signed result JSON files entirely in the browser. Users generate a local signing key, sign the latest result manifest, and share the signed JSON plus the included public key.
+
+Signed exports prove:
+
+- the manifest has not changed since it was signed
+- the file was signed by the private key matching the included public key
+- the benchmark pack hash, model settings, score breakdown, task results, and environment note are part of the signed payload
+
+Signed exports do not prove:
+
+- the run was honest
+- the model response was generated live
+- the benchmark pack was hidden from the user
+- browser code was unmodified
+- API settings were truthful beyond what the file records
+
+This is useful before a leaderboard because teams, reviewers, and community contributors can share tamper-evident result files without FRCBench running a backend. Users can publish their public key fingerprint in a README, team site, GitHub profile, or Chief Delphi post so later files can be associated with the same signer.
+
+For stronger anti-cheat, FRCBench will still need hidden/private benchmark packs, signed pack releases, reproducible runner builds, and eventually optional server-side or community-reviewed leaderboard workflows.
+
 ## License
 
 The app code is MIT licensed. Benchmark datasets may eventually need additional provenance and contribution metadata as community packs mature.

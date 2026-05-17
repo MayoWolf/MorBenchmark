@@ -70,16 +70,16 @@ export function ModelConfig({
   };
 
   return (
-    <section className="rounded-lg border border-white/10 bg-field-panel p-5 shadow-glow">
-      <div className="mb-5 flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+    <section className="rounded border border-white/10 bg-field-panel p-4">
+      <div className="mb-4 flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
         <div>
           <div className="flex items-center gap-2 text-sm uppercase tracking-wider text-blue-200">
             <Server className="h-4 w-4" />
             Model/API configuration
           </div>
-          <h2 className="mt-2 text-2xl font-semibold text-white">Bring your own compatible endpoint</h2>
+          <h2 className="mt-1 text-base font-semibold text-white">Provider settings</h2>
         </div>
-        <label className="flex items-center gap-3 rounded-md border border-emerald-400/30 bg-emerald-400/10 px-3 py-2 text-sm text-emerald-100">
+        <label className="flex items-center gap-3 rounded border border-emerald-400/30 bg-emerald-400/10 px-3 py-1.5 text-sm text-emerald-100">
           <input
             type="checkbox"
             checked={demoMode}
@@ -96,7 +96,7 @@ export function ModelConfig({
             key={preset.label}
             type="button"
             onClick={() => applyPreset(preset)}
-            className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-left text-sm text-slate-200 transition hover:border-blue-300/50 hover:bg-blue-400/10"
+            className="rounded border border-white/10 bg-white/[0.03] px-3 py-2 text-left text-sm text-slate-200 transition hover:border-blue-300/50 hover:bg-blue-400/10"
           >
             <span className="block font-medium text-white">{preset.label}</span>
             <span className="mt-1 block truncate text-xs text-slate-400">{preset.baseUrl}</span>
@@ -168,7 +168,7 @@ export function ModelConfig({
         </Field>
       </div>
 
-      <div className="mt-5 rounded-md border border-amber-300/30 bg-amber-300/10 p-3 text-sm text-amber-100">
+      <div className="mt-5 rounded border border-amber-300/30 bg-amber-300/10 p-3 text-sm text-amber-100">
         <div className="flex gap-2">
           <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
           <p>

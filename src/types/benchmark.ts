@@ -120,6 +120,45 @@ export interface ScoreBreakdown {
   byDifficulty: Record<string, BreakdownBucket>;
 }
 
+export interface ResultEnvironment {
+  userAgent: string;
+  appVersion?: string;
+  browserTimestamp: string;
+  note: string;
+}
+
+export interface ResultManifestSignature {
+  algorithm: 'ECDSA-P256-SHA256';
+  publicKeyJwk: JsonWebKey;
+  publicKeyFingerprint: string;
+  signatureValue: string;
+  signedAt: string;
+}
+
+export interface SignedResultManifest {
+  schemaVersion: 'frcbench.signed-result.v1';
+  appName: 'FRCBench';
+  benchmarkPackId: string;
+  benchmarkPackVersion: string;
+  benchmarkPackHash: string;
+  runId: string;
+  timestamp: string;
+  modelProvider: string;
+  modelName: string;
+  apiBaseUrl: string;
+  temperature: number;
+  maxTokens: number;
+  totalScore: number;
+  maxScore: number;
+  percentScore: number;
+  categoryBreakdown: ScoreBreakdown['byCategory'];
+  seasonBreakdown: ScoreBreakdown['bySeason'];
+  difficultyBreakdown: ScoreBreakdown['byDifficulty'];
+  taskResults: BenchmarkResult[];
+  environment: ResultEnvironment;
+  signature: ResultManifestSignature | null;
+}
+
 export interface ChatMessage {
   role: 'system' | 'user' | 'assistant';
   content: string;

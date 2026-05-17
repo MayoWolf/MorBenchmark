@@ -2,15 +2,24 @@ import { Download, ExternalLink, Gauge, TableProperties, X } from 'lucide-react'
 import { useMemo, useState } from 'react';
 import { downloadCsv, downloadJson } from '../lib/exportResults';
 import { calculateScoreBreakdown } from '../lib/scoring';
-import type { BenchmarkResult, ScoreBreakdown } from '../types/benchmark';
+import type { BenchmarkPack, BenchmarkResult, ModelProviderConfig, ScoreBreakdown } from '../types/benchmark';
+import { SignedResultExport } from './SignedResultExport';
 
 interface ResultsSummaryProps {
   results: BenchmarkResult[];
   benchmarkVersion: string;
+  benchmarkPack: BenchmarkPack;
+  config: ModelProviderConfig;
   onUpdateScore: (questionId: string, score: number) => void;
 }
 
-export function ResultsSummary({ results, benchmarkVersion, onUpdateScore }: ResultsSummaryProps) {
+export function ResultsSummary({
+  results,
+  benchmarkVersion,
+  benchmarkPack,
+  config,
+  onUpdateScore,
+}: ResultsSummaryProps) {
   const summary = useMemo(() => calculateScoreBreakdown(results), [results]);
   const [selectedResult, setSelectedResult] = useState<BenchmarkResult | null>(null);
 
@@ -58,6 +67,8 @@ export function ResultsSummary({ results, benchmarkVersion, onUpdateScore }: Res
           </div>
         </div>
       </section>
+
+      <SignedResultExport pack={benchmarkPack} results={results} config={config} />
 
       <div className="grid gap-4 lg:grid-cols-3">
         <BreakdownCard title="Category breakdown" breakdown={summary.byCategory} />

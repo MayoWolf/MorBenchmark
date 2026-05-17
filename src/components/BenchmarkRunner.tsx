@@ -11,10 +11,9 @@ import type {
   BenchmarkTask,
   ModelProviderConfig,
 } from '../types/benchmark';
-import { BenchmarkPackManager } from './BenchmarkPackManager';
 import { ModelConfig } from './ModelConfig';
-import { PackQualityReport } from './PackQualityReport';
-import { TaskBrowser } from './TaskBrowser';
+import { Button } from './ui/Button';
+import { Panel, PanelHeader } from './ui/Panel';
 
 interface BenchmarkRunnerProps {
   config: ModelProviderConfig;
@@ -22,7 +21,6 @@ interface BenchmarkRunnerProps {
   benchmarkPack: BenchmarkPack;
   onConfigChange: (config: ModelProviderConfig) => void;
   onDemoModeChange: (enabled: boolean) => void;
-  onBenchmarkPackChange: (pack: BenchmarkPack) => void;
   onResults: (results: BenchmarkResult[]) => void;
 }
 
@@ -32,7 +30,6 @@ export function BenchmarkRunner({
   benchmarkPack,
   onConfigChange,
   onDemoModeChange,
-  onBenchmarkPackChange,
   onResults,
 }: BenchmarkRunnerProps) {
   const categories = useMemo(
@@ -47,7 +44,7 @@ export function BenchmarkRunner({
   const [selectedSeasons, setSelectedSeasons] = useState<number[]>(seasons);
   const [isRunning, setIsRunning] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [statusMessage, setStatusMessage] = useState('Ready to run sample-v0.1.0');
+  const [statusMessage, setStatusMessage] = useState(`Ready to run ${benchmarkPack.version}`);
   const [runResults, setRunResults] = useState<BenchmarkResult[]>([]);
   const abortRef = useRef<AbortController | null>(null);
 
@@ -172,7 +169,7 @@ export function BenchmarkRunner({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_360px]">
       <ModelConfig
         config={config}
         demoMode={demoMode}
@@ -180,55 +177,91 @@ export function BenchmarkRunner({
         onDemoModeChange={onDemoModeChange}
       />
 
-      <BenchmarkPackManager pack={benchmarkPack} onPackChange={onBenchmarkPackChange} />
-
-      <PackQualityReport pack={benchmarkPack} />
-
-      <TaskBrowser
-        tasks={benchmarkPack.tasks}
-        selectedCategories={selectedCategories}
-        selectedSeasons={selectedSeasons}
-        onSelectedCategoriesChange={setSelectedCategories}
-        onSelectedSeasonsChange={setSelectedSeasons}
-      />
-
-      <section className="rounded-lg border border-white/10 bg-field-panel p-5">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div>
-            <div className="flex items-center gap-2 text-sm uppercase tracking-wider text-blue-200">
-              <Timer className="h-4 w-4" />
-              Benchmark runner
+      <div className="space-y-4">
+        <Panel>
+          <PanelHeader eyebrow="Benchmark options" title="Selection" />
+          <div className="space-y-4 p-4">
+            <div>
+              <h3 className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-500">Categories</h3>
+              <div className="space-y-2">
+                {categories.map((category) => (
+                  <label key={category} className="flex items-center gap-2 text-sm text-slate-300">
+                    <input
+                      type="checkbox"
+                      checked={selectedCategories.includes(category)}
+                      onChange={() =>
+                        setSelectedCategories((current) =>
+                          current.includes(category)
+                            ? current.filter((item) => item !== category)
+                            : [...current, category],
+                        )
+                      }
+                      className="h-4 w-4 accent-blue-400"
+                    />
+                    {category}
+                  </label>
+                ))}
+              </div>
             </div>
-            <h2 className="mt-2 text-2xl font-semibold text-white">Run selected tasks</h2>
-            <p className="mt-1 text-sm text-slate-400">
-              {selectedTasks.length} tasks selected. Current run has {runResults.length} results.
-            </p>
+            <div>
+              <h3 className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-500">Seasons</h3>
+              <div className="grid grid-cols-3 gap-2">
+                {seasons.map((season) => (
+                  <label key={season} className="flex items-center gap-2 text-sm text-slate-300">
+                    <input
+                      type="checkbox"
+                      checked={selectedSeasons.includes(season)}
+                      onChange={() =>
+                        setSelectedSeasons((current) =>
+                          current.includes(season)
+                            ? current.filter((item) => item !== season)
+                            : [...current, season],
+                        )
+                      }
+                      className="h-4 w-4 accent-blue-400"
+                    />
+                    {season}
+                  </label>
+                ))}
+              </div>
+            </div>
           </div>
-          <div className="flex flex-col gap-2 sm:flex-row">
-            <button type="button" onClick={startRun} disabled={isRunning} className="button-primary">
-              {isRunning ? <Loader2 className="h-4 w-4 animate-spin" /> : <Trophy className="h-4 w-4" />}
-              Start run
-            </button>
-            <button type="button" onClick={stopRun} disabled={!isRunning} className="button-secondary">
-              <Square className="h-4 w-4" />
-              Stop
-            </button>
-          </div>
-        </div>
+        </Panel>
 
-        <div className="mt-5">
-          <div className="mb-2 flex items-center justify-between text-sm text-slate-300">
-            <span>{statusMessage}</span>
-            <span>{progress}%</span>
+        <Panel>
+          <PanelHeader eyebrow="Runner" title="Run selected benchmark" />
+          <div className="p-4">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <p className="text-sm text-slate-300">{selectedTasks.length} tasks selected</p>
+                <p className="text-xs text-slate-500">{runResults.length} results in current run</p>
+              </div>
+              <div className="flex gap-2">
+                <Button type="button" onClick={startRun} disabled={isRunning} variant="primary">
+                  {isRunning ? <Loader2 className="h-4 w-4 animate-spin" /> : <Trophy className="h-4 w-4" />}
+                  Run selected benchmark
+                </Button>
+                <Button type="button" onClick={stopRun} disabled={!isRunning}>
+                  <Square className="h-4 w-4" />
+                  Stop
+                </Button>
+              </div>
+            </div>
+            <div className="mt-4">
+              <div className="mb-2 flex items-center justify-between text-sm text-slate-300">
+                <span className="flex items-center gap-2">
+                  <Timer className="h-4 w-4 text-slate-500" />
+                  {statusMessage}
+                </span>
+                <span>{progress}%</span>
+              </div>
+              <div className="h-2 overflow-hidden rounded bg-white/10">
+                <div className="h-full rounded bg-blue-400 transition-all" style={{ width: `${progress}%` }} />
+              </div>
+            </div>
           </div>
-          <div className="h-3 overflow-hidden rounded-full bg-white/10">
-            <div
-              className="h-full rounded-full bg-gradient-to-r from-field-blue via-emerald-400 to-field-red transition-all"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-        </div>
-      </section>
+        </Panel>
+      </div>
     </div>
   );
 }
