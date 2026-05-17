@@ -1,0 +1,102 @@
+export type BenchmarkCategory =
+  | 'game_rules'
+  | 'strategy_meta'
+  | 'alliance_selection'
+  | 'match_analysis'
+  | 'ranking_points'
+  | 'robot_design_tradeoffs'
+  | 'scouting_interpretation'
+  | 'historical_meta';
+
+export type BenchmarkDifficulty = 'easy' | 'medium' | 'hard';
+
+export type ScoringType =
+  | 'multiple_choice'
+  | 'short_answer'
+  | 'rubric'
+  | 'json_structured'
+  | 'manual';
+
+export type StoragePreference = 'none' | 'session' | 'local';
+
+export interface RubricItem {
+  point: string;
+  points: number;
+  keywords?: string[];
+}
+
+export interface BenchmarkTask {
+  id: string;
+  season: number;
+  gameName: string;
+  category: BenchmarkCategory;
+  difficulty: BenchmarkDifficulty;
+  prompt: string;
+  expectedAnswer: string;
+  scoringType: ScoringType;
+  rubric: RubricItem[];
+  tags: string[];
+  sourceNote: string;
+  publicExplanation: string;
+  choices?: string[];
+}
+
+export interface ModelProviderConfig {
+  providerName: string;
+  baseUrl: string;
+  apiKey: string;
+  modelName: string;
+  temperature: number;
+  maxTokens: number;
+  storagePreference: StoragePreference;
+}
+
+export interface BenchmarkRunConfig {
+  provider: ModelProviderConfig;
+  selectedCategories: BenchmarkCategory[];
+  selectedSeasons: number[];
+  demoMode: boolean;
+}
+
+export interface BenchmarkResult {
+  questionId: string;
+  prompt: string;
+  modelAnswer: string;
+  expectedAnswer: string;
+  score: number;
+  maxScore: number;
+  category: BenchmarkCategory;
+  season: number;
+  difficulty: BenchmarkDifficulty;
+  latency: number;
+  modelName: string;
+  timestamp: string;
+  scoringType: ScoringType;
+  notes?: string;
+}
+
+export interface BreakdownBucket {
+  score: number;
+  maxScore: number;
+  percent: number;
+  count: number;
+}
+
+export interface ScoreBreakdown {
+  totalScore: number;
+  totalMaxScore: number;
+  percentScore: number;
+  byCategory: Record<string, BreakdownBucket>;
+  bySeason: Record<string, BreakdownBucket>;
+  byDifficulty: Record<string, BreakdownBucket>;
+}
+
+export interface ChatMessage {
+  role: 'system' | 'user' | 'assistant';
+  content: string;
+}
+
+export interface ModelResponse {
+  content: string;
+  latency: number;
+}
