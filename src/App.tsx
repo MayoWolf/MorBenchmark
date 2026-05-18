@@ -3,6 +3,7 @@ import { BenchmarkRunner } from './components/BenchmarkRunner';
 import { AppShell } from './components/layout/AppShell';
 import type { AppPage } from './components/layout/types';
 import { DocsScoringPage } from './components/pages/DocsScoringPage';
+import { LeaderboardPage } from './components/pages/LeaderboardPage';
 import { OverviewPage } from './components/pages/OverviewPage';
 import { PackQualityReport } from './components/PackQualityReport';
 import { ResultsSummary } from './components/ResultsSummary';
@@ -86,6 +87,10 @@ function App() {
           config={config}
           onUpdateScore={updateScore}
         />
+      )}
+
+      {page === 'leaderboard' && (
+        <LeaderboardPage pack={benchmarkPack} results={results} config={config} />
       )}
 
       {page === 'quality' && <PackQualityReport pack={benchmarkPack} />}

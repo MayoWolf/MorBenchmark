@@ -1,1 +1,1 @@
-export type AppPage = 'overview' | 'tasks' | 'run' | 'results' | 'quality' | 'verify' | 'docs';
+export type AppPage = 'overview' | 'tasks' | 'run' | 'results' | 'leaderboard' | 'quality' | 'verify' | 'docs';

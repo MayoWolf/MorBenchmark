@@ -2,7 +2,7 @@
 
 FRCBench is a fully open-source browser app for benchmarking LLMs on FIRST Robotics Competition knowledge and reasoning: game strategy, season-specific metas, alliance selection, rule interpretation, scouting interpretation, robot tradeoffs, ranking-point decisions, and match analysis.
 
-The v1 app is intentionally backend-free. Users bring their own API keys, and calls go directly from their browser to the OpenAI-compatible endpoint they configure.
+The core runner works without a backend. Users bring their own API keys, and calls go directly from their browser to the OpenAI-compatible endpoint they configure. An optional Supabase leaderboard can be enabled for public signed result submissions.
 
 ## Screenshots
 
@@ -39,6 +39,7 @@ FRCBench should feel useful to FRC people, not only to benchmark hobbyists. The 
 - Result details modal with prompt, answer, expected answer, rubric, tags, verification status, and sources
 - Manual score adjustment
 - JSON and CSV result export
+- Optional Supabase leaderboard for signed public runs
 
 ## Privacy and BYO API Keys
 
@@ -46,7 +47,7 @@ FRCBench runs in your browser. Your API key is stored locally only if you choose
 
 Browser-based API calls expose keys to your own browser session and the configured provider endpoint. Use restricted or temporary keys when possible. Do not commit real API keys.
 
-FRCBench does not include analytics, a paid backend, or server-side key storage.
+FRCBench does not include analytics or server-side API key storage. If the optional Supabase leaderboard is enabled, submitted benchmark result manifests and task results are stored publicly.
 
 ## CORS Warning
 
@@ -88,6 +89,39 @@ This repo includes `netlify.toml`.
 - Publish directory: `dist`
 
 You can deploy through the Netlify UI, Netlify CLI, or by connecting a Git repository.
+
+## Optional Supabase Leaderboard
+
+The leaderboard is optional. The app remains Netlify-compatible; Supabase is used only as a public database for signed result submissions. Browser code talks to a Netlify Function at `/.netlify/functions/leaderboard`, and that function reads Supabase credentials from server-side Netlify environment variables.
+
+Set these Netlify environment variables without the `VITE_` prefix:
+
+```bash
+SUPABASE_URL=your-project-url
+SUPABASE_ANON_KEY=your-public-anon-key
+```
+
+Do not use Vite-bundled Supabase variables for this. Do not expose a service-role key to the browser. The anon key remains server-side in the Netlify Function, and Row Level Security still protects the table.
+
+Apply the schema in:
+
+```text
+supabase/migrations/001_leaderboard.sql
+```
+
+The leaderboard stores:
+
+- signed result manifest
+- task results
+- score summary
+- benchmark pack id, version, and hash
+- model provider/name and API base URL
+- submitter display name and optional team number
+- public signing key fingerprint
+
+The leaderboard does not store user API keys. Submissions use the Supabase anon key from the Netlify Function with Row Level Security: public reads and inserts are allowed, while client-side updates/deletes are not.
+
+Signed leaderboard submissions are tamper-evident, not anti-cheat proof. A signature shows the result file was not changed after signing; it does not prove the run was honest or that the browser/app was unmodified.
 
 ## Benchmark Packs
 

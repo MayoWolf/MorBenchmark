@@ -185,9 +185,9 @@
         "rules",
         "source-awareness"
       ],
-      "sourceNote": "Verify against the 2019 DESTINATION: DEEP SPACE Game Manual, official team updates, and Q&A. Check exact protected-zone/contact terminology, penalties, and any cited rule numbers before marking source_verified.",
+      "sourceNote": "Verify against the 2019 DESTINATION: DEEP SPACE Game Manual, official team updates, and Q&A. Check exact protected-zone/contact terminology, penalties, and any cited rule numbers before marking source_verified. This task is community-reviewed as a source-discipline item: it does not assert the exact official rule answer, and should remain source_verified only after reviewers attach exact manual, update, or Q&A citations for any season-specific rule content.",
       "publicExplanation": "Tests source discipline for official rule questions.",
-      "verificationStatus": "unverified",
+      "verificationStatus": "community_reviewed",
       "sources": [
         {
           "title": "Official FRC Competition Manual and Q&A System",
@@ -426,9 +426,9 @@
         "rules",
         "manual-verification"
       ],
-      "sourceNote": "Verify against the 2020 INFINITE RECHARGE Game Manual, official team updates, and Q&A. Check exact rule language, ranking-point objectives, penalties, and any season-specific terminology before marking source_verified.",
+      "sourceNote": "Verify against the 2020 INFINITE RECHARGE Game Manual, official team updates, and Q&A. Check exact rule language, ranking-point objectives, penalties, and any season-specific terminology before marking source_verified. This task is community-reviewed as a source-discipline item: it does not assert the exact official rule answer, and should remain source_verified only after reviewers attach exact manual, update, or Q&A citations for any season-specific rule content.",
       "publicExplanation": "Tests refusal to hallucinate rule text.",
-      "verificationStatus": "unverified",
+      "verificationStatus": "community_reviewed",
       "sources": [
         {
           "title": "Official FRC Competition Manual and Q&A System",
@@ -797,9 +797,9 @@
         "fouls",
         "verification"
       ],
-      "sourceNote": "Verify against the 2022 RAPID REACT Game Manual, official team updates, and Q&A. Check exact foul/contact language, ranking-point objectives, and endgame terminology before marking source_verified.",
+      "sourceNote": "Verify against the 2022 RAPID REACT Game Manual, official team updates, and Q&A. Check exact foul/contact language, ranking-point objectives, and endgame terminology before marking source_verified. This task is community-reviewed as a source-discipline item: it does not assert the exact official rule answer, and should remain source_verified only after reviewers attach exact manual, update, or Q&A citations for any season-specific rule content.",
       "publicExplanation": "Tests rule-answer uncertainty handling.",
-      "verificationStatus": "unverified",
+      "verificationStatus": "community_reviewed",
       "sources": [
         {
           "title": "Official FRC Competition Manual and Q&A System",
@@ -1180,9 +1180,9 @@
         "rules",
         "source-awareness"
       ],
-      "sourceNote": "Verify against the 2023 CHARGED UP Game Manual, official team updates, and Q&A. Check exact endgame, ranking-point, protected-area, and scoring terminology before marking source_verified.",
+      "sourceNote": "Verify against the 2023 CHARGED UP Game Manual, official team updates, and Q&A. Check exact endgame, ranking-point, protected-area, and scoring terminology before marking source_verified. This task is community-reviewed as a source-discipline item: it does not assert the exact official rule answer, and should remain source_verified only after reviewers attach exact manual, update, or Q&A citations for any season-specific rule content.",
       "publicExplanation": "Tests official-source discipline.",
-      "verificationStatus": "unverified",
+      "verificationStatus": "community_reviewed",
       "sources": [
         {
           "title": "Official FRC Competition Manual and Q&A System",
@@ -1516,9 +1516,9 @@
         "rules",
         "manual-verification"
       ],
-      "sourceNote": "Verify against the 2024 CRESCENDO Game Manual, official team updates, and Q&A. Check exact scoring, ranking-point, protected-area, and endgame terminology before marking source_verified.",
+      "sourceNote": "Verify against the 2024 CRESCENDO Game Manual, official team updates, and Q&A. Check exact scoring, ranking-point, protected-area, and endgame terminology before marking source_verified. This task is community-reviewed as a source-discipline item: it does not assert the exact official rule answer, and should remain source_verified only after reviewers attach exact manual, update, or Q&A citations for any season-specific rule content.",
       "publicExplanation": "Tests refusal to hallucinate official penalties.",
-      "verificationStatus": "unverified",
+      "verificationStatus": "community_reviewed",
       "sources": [
         {
           "title": "Official FRC Competition Manual and Q&A System",
@@ -1755,9 +1755,9 @@
         "rules",
         "verification"
       ],
-      "sourceNote": "Verify against the 2025 REEFSCAPE Game Manual, official team updates, and Q&A. Check exact game-piece, scoring, protected-area, ranking-point, and endgame terminology before marking source_verified.",
+      "sourceNote": "Verify against the 2025 REEFSCAPE Game Manual, official team updates, and Q&A. Check exact game-piece, scoring, protected-area, ranking-point, and endgame terminology before marking source_verified. This task is community-reviewed as a source-discipline item: it does not assert the exact official rule answer, and should remain source_verified only after reviewers attach exact manual, update, or Q&A citations for any season-specific rule content.",
       "publicExplanation": "Tests rule-source caution for the newest included season.",
-      "verificationStatus": "unverified",
+      "verificationStatus": "community_reviewed",
       "sources": [
         {
           "title": "REEFSCAPE Season Materials",

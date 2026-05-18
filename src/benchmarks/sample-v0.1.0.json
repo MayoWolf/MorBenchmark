@@ -268,7 +268,7 @@
       "publicExplanation": "Checks basic understanding that qualification objectives can change strategic priorities."
     },
     {
-      "verificationStatus": "unverified",
+      "verificationStatus": "community_reviewed",
       "id": "2017-rules-001",
       "season": 2017,
       "gameName": "STEAMWORKS",
@@ -297,7 +297,7 @@
         "verification",
         "safety"
       ],
-      "sourceNote": "Meta rules-interpretation prompt, not an official rule statement.",
+      "sourceNote": "Meta rules-interpretation prompt, not an official rule statement. Community-reviewed as a source-discipline task; it does not assert a specific official rule answer.",
       "publicExplanation": "Tests whether the model avoids hallucinating official rules."
     },
     {
@@ -440,7 +440,7 @@
       "publicExplanation": "Tests strategic tradeoff reasoning in qualification play."
     },
     {
-      "verificationStatus": "unverified",
+      "verificationStatus": "community_reviewed",
       "id": "2022-rules-001",
       "season": 2022,
       "gameName": "RAPID REACT",
@@ -483,7 +483,7 @@
         "manual-review",
         "source-awareness"
       ],
-      "sourceNote": "Manual-review safety prompt. Not an official rule statement.",
+      "sourceNote": "Manual-review safety prompt. Not an official rule statement. Community-reviewed as a source-discipline task; it does not assert a specific official rule answer.",
       "publicExplanation": "Designed for human review of source discipline."
     },
     {
