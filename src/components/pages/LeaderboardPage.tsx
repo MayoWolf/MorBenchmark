@@ -1,18 +1,11 @@
-import { RefreshCw, Send, ShieldCheck, Trophy } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
-import { hashBenchmarkPack } from '../../lib/hashBenchmarkPack';
+import { RefreshCw, Trophy } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import {
   fetchLeaderboardRuns,
-  submitLeaderboardRun,
   type LeaderboardRun,
 } from '../../lib/leaderboard/leaderboardService';
-import {
-  createUnsignedResultManifest,
-  generateLocalSigningKey,
-  loadStoredSigningKey,
-  signResultManifest,
-} from '../../lib/signResults';
 import type { BenchmarkPack, BenchmarkResult, ModelProviderConfig } from '../../types/benchmark';
+import { LeaderboardSubmitPanel } from '../LeaderboardSubmitPanel';
 import { Button } from '../ui/Button';
 import { Panel, PanelHeader } from '../ui/Panel';
 import { DataTable, StickyHeader, TableShell } from '../ui/Table';
@@ -25,16 +18,8 @@ interface LeaderboardPageProps {
 
 export function LeaderboardPage({ pack, results, config }: LeaderboardPageProps) {
   const [runs, setRuns] = useState<LeaderboardRun[]>([]);
-  const [displayName, setDisplayName] = useState('');
-  const [teamNumber, setTeamNumber] = useState('');
   const [status, setStatus] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const latestScore = useMemo(() => {
-    const score = results.reduce((sum, result) => sum + result.score, 0);
-    const max = results.reduce((sum, result) => sum + result.maxScore, 0);
-    const percent = max ? Math.round((score / max) * 1000) / 10 : 0;
-    return { score, max, percent };
-  }, [results]);
 
   const loadRuns = async () => {
     setIsLoading(true);
@@ -52,96 +37,20 @@ export function LeaderboardPage({ pack, results, config }: LeaderboardPageProps)
     void loadRuns();
   }, []);
 
-  const submitLatestRun = async () => {
-    if (!results.length) {
-      setStatus('Run a benchmark before submitting to the leaderboard.');
-      return;
-    }
-
-    setIsLoading(true);
-    setStatus('');
-
-    try {
-      const signingKey = (await loadStoredSigningKey()) ?? (await generateLocalSigningKey(true));
-      const packHash = await hashBenchmarkPack(pack);
-      const unsignedManifest = await createUnsignedResultManifest({
-        pack,
-        packHash,
-        results,
-        config,
-      });
-      const signedManifest = await signResultManifest(unsignedManifest, signingKey);
-      await submitLeaderboardRun({
-        displayName,
-        teamNumber: teamNumber.trim() ? Number(teamNumber) : null,
-        manifest: signedManifest,
-      });
-      setStatus('Submitted signed result to the leaderboard.');
-      await loadRuns();
-    } catch (error) {
-      setStatus(error instanceof Error ? error.message : 'Could not submit leaderboard run.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   return (
     <div className="space-y-4">
-      <Panel>
-        <PanelHeader eyebrow="Connection" title="Server-side Supabase connection" />
-        <div className="space-y-3 p-4 text-sm leading-6 text-slate-300">
-          <p>
-            Leaderboard reads and submissions go through `/.netlify/functions/leaderboard`. Supabase credentials are read
-            only by that Netlify Function from server-side environment variables.
-          </p>
-          <p className="rounded border border-amber-400/30 bg-amber-400/10 p-3 text-amber-100">
-            Set `SUPABASE_URL` and `SUPABASE_ANON_KEY` in Netlify. Do not use `VITE_` variables and do not expose a
-            service-role key to the browser.
-          </p>
-        </div>
-      </Panel>
+      <LeaderboardSubmitPanel pack={pack} results={results} config={config} onSubmitted={loadRuns} />
 
       <Panel>
-        <PanelHeader eyebrow="Leaderboard" title="Submit latest run">
-          <div className="flex items-center gap-2 text-sm text-slate-400">
-            <ShieldCheck className="h-4 w-4 text-blue-300" />
-            Signed client-side manifest required
-          </div>
-        </PanelHeader>
-        <div className="grid gap-4 p-4 lg:grid-cols-[1fr_280px]">
-          <div className="grid gap-3 sm:grid-cols-2">
-            <label>
-              <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Display name</span>
-              <input className="input" value={displayName} onChange={(event) => setDisplayName(event.target.value)} placeholder="team, handle, or anonymous" />
-            </label>
-            <label>
-              <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Team number</span>
-              <input className="input" value={teamNumber} onChange={(event) => setTeamNumber(event.target.value)} placeholder="optional" inputMode="numeric" />
-            </label>
-          </div>
-          <div className="rounded border border-white/10 bg-field-rail p-3">
-            <p className="text-xs uppercase tracking-wide text-slate-500">Latest local result</p>
-            <p className="mt-1 text-lg font-semibold text-white">
-              {latestScore.score}/{latestScore.max} ({latestScore.percent}%)
-            </p>
-            <p className="text-xs text-slate-500">{results.length} task results</p>
-          </div>
-          <div className="lg:col-span-2 flex flex-wrap items-center gap-2">
-            <Button type="button" variant="primary" onClick={submitLatestRun} disabled={isLoading || !results.length}>
-              <Send className="h-4 w-4" />
-              Submit signed result
-            </Button>
+        <PanelHeader eyebrow="Public runs" title="Leaderboard">
+          <div className="flex items-center gap-2">
             <Button type="button" onClick={loadRuns} disabled={isLoading}>
               <RefreshCw className={`h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />
               Refresh
             </Button>
             {status && <span className="text-sm text-slate-300">{status}</span>}
           </div>
-        </div>
-      </Panel>
-
-      <Panel>
-        <PanelHeader eyebrow="Public runs" title="Leaderboard" />
+        </PanelHeader>
         <TableShell>
           <DataTable>
             <StickyHeader>

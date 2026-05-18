@@ -49,7 +49,7 @@ export async function handler(event) {
         .limit(100);
 
       if (error) {
-        return response(500, { error: error.message });
+        return leaderboardErrorResponse(error);
       }
 
       return response(200, { runs: data ?? [] });
@@ -86,7 +86,7 @@ export async function handler(event) {
       });
 
       if (error) {
-        return response(500, { error: error.message });
+        return leaderboardErrorResponse(error);
       }
 
       return response(201, { ok: true });
@@ -150,6 +150,21 @@ function validateSubmission(body) {
   }
 
   return '';
+}
+
+function leaderboardErrorResponse(error) {
+  const message = error?.message ?? 'Unknown Supabase leaderboard error.';
+  const code = error?.code;
+
+  if (code === 'PGRST205' || message.includes('schema cache') || message.includes('leaderboard_runs')) {
+    return response(503, {
+      error:
+        'Leaderboard database is not initialized. Create public.leaderboard_runs in your Supabase project by running supabase/migrations/001_leaderboard.sql, then retry after the Supabase schema cache refreshes.',
+      details: message,
+    });
+  }
+
+  return response(500, { error: message });
 }
 
 function response(statusCode, body) {

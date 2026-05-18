@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react';
 import { downloadCsv, downloadJson } from '../lib/exportResults';
 import { calculateScoreBreakdown } from '../lib/scoring';
 import type { BenchmarkPack, BenchmarkResult, ModelProviderConfig, ScoreBreakdown } from '../types/benchmark';
+import { LeaderboardSubmitPanel } from './LeaderboardSubmitPanel';
 import { SignedResultExport } from './SignedResultExport';
 
 interface ResultsSummaryProps {
@@ -67,6 +68,8 @@ export function ResultsSummary({
           </div>
         </div>
       </section>
+
+      <LeaderboardSubmitPanel pack={benchmarkPack} results={results} config={config} />
 
       <SignedResultExport pack={benchmarkPack} results={results} config={config} />
 

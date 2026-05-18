@@ -109,6 +109,10 @@ Apply the schema in:
 supabase/migrations/001_leaderboard.sql
 ```
 
+For a hosted Supabase project, open the Supabase dashboard, go to **SQL Editor**, paste the contents of that file, and run it once. The Netlify environment variables only connect the function to Supabase; they do not create database tables automatically.
+
+If the app reports `Could not find the table 'public.leaderboard_runs' in the schema cache`, the migration has not been run against the Supabase project configured in Netlify, or Supabase has not refreshed its API schema cache yet. Confirm the table exists in **Table Editor -> public -> leaderboard_runs**, then retry after a short refresh.
+
 The leaderboard stores:
 
 - signed result manifest
