@@ -95,7 +95,7 @@ export function LeaderboardSubmitPanel({
               className="input"
               value={teamNumber}
               onChange={(event) => setTeamNumber(event.target.value)}
-              placeholder="254"
+              placeholder="1515"
               inputMode="numeric"
             />
           </label>
