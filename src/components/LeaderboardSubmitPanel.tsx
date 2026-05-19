@@ -81,12 +81,12 @@ export function LeaderboardSubmitPanel({
       <div className="grid gap-4 p-4 lg:grid-cols-[1fr_280px]">
         <div className="grid gap-3 sm:grid-cols-2">
           <label>
-            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Display name</span>
+            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Your display name</span>
             <input
               className="input"
               value={displayName}
               onChange={(event) => setDisplayName(event.target.value)}
-              placeholder="team, handle, or anonymous"
+              placeholder="John Doe"
             />
           </label>
           <label>
@@ -95,7 +95,7 @@ export function LeaderboardSubmitPanel({
               className="input"
               value={teamNumber}
               onChange={(event) => setTeamNumber(event.target.value)}
-              placeholder="optional"
+              placeholder="254"
               inputMode="numeric"
             />
           </label>
